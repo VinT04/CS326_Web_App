@@ -1,15 +1,14 @@
 #vision {
-    font-size: larger;
-    font-style: italic;
+  font-size: larger;
+  font-style: italic;
 }
 h1 {
-    color: blue;
-    padding: 10 10 10 10;
-    text-align: justify;
+  color: blue;
+  padding: 10 10 10 10;
+  text-align: justify;
 }
 
 .red-text-black-bg {
-    color: red;
-    background-color: black;
+  color: red;
+  background-color: black;
 }
-
