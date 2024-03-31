@@ -15,11 +15,10 @@
 <body>
   <header class="nav-bar-header">
     <!-- Navigation bar, logo, etc. -->
-
     <nav class="nav-bar">
-      <!-- Links to different sections/pages -->
-      <a class="nav-link" href="#">Home</a>
+      <!-- Links to different sections/pages-->
       <ul class="nav-list">
+        <li><a class="nav-link" href="#">Home</a></li>
         <li><a class="nav-link" href="#vision">Vision</a></li>
         <li><a class="nav-link" href="#team">Team</a></li>
         <li><a class="nav-link" href="#overview">Overview</a></li>
@@ -34,159 +33,182 @@
 
   <main>
     <!-- Main content of the document -->
-    <header id="vision">
-      <h1>Raising Awareness of Climate Change</h1>
-    </header>
-
+    <section>
+      <h2>ClimaSense</h2>
+      <h2>ClimaSense</h2>
+    </section>
     <section id="team">
       <!-- Related content or subsections -->
       <h2>Meet the team</h2>
-      <h3>Victor Chen</h3>
-      <p>
-        My name is Victor Chen and I am a sophomore at UMass studying CS and
-        Math. I enjoy learning about machine learning and hope to explore its
-        applications to fields like biology. Computational methods provide
-        crucial insights in tackling problems in biology and improving our
-        collective understanding of diseases and life. I also have experience
-        with education and enjoy helping people learn while motivating them to
-        pursue their interests.
-      </p>
-      <h3>Manu Hegde</h3>
-      <p>
-        My name is Manu Hegde and I am a sophomore CS student at UMass
-        Amherst. My particular interests lie in web development, machine
-        learning, and cybersecurity. My passion for CS focuses on its
-        intersection with other industries, as I believe this is where the
-        power of CS and its leverage can be seen. I have past experience
-        working in Fintech (Fidelity Investments), education (Kara Tutoring),
-        and national defense (MITRE), and am looking forward to gaining more
-        experience in software engineering through future experiences.
-      </p>
-      <h3>Vinamra Tyagi</h3>
-      <p>
-        My name is Vinamra Tyagi, and I go by Vin. I am a sophomore CS UMass
-        student, thoroughly involved in developing and refining software since
-        2018. I have interests in ML/RL, and full-stack SWE. I have developed
-        a passion for developing functional programs that benefit not only
-        myself, but the world as a whole. I believe in the potential that CS
-        has for improving our planet, and would love to use my skills as a
-        developer to bring about that change!
-      </p>
-      <h3>Aarav Nair</h3>
-      <p>
-        I am a sophomore CS and math student. Much of my experience is in
-        mobile app development, but I am also interested in web development
-        and machine learning. I also enjoy learning about the intersection
-        between CS and the social sciences, and how we can use computers to
-        better understand data.
-      </p>
+      <div class="card-wrapper">
+        <div class="card" id="victor">
+          <div class="card-picture" id="victor-picture">
+            <img src="images/baby_victor.jpg">
+          </div>
+          <h3>Victor Chen</h3>
+          <p>
+            My name is Victor Chen and I am a sophomore at UMass studying CS and
+            Math. I enjoy learning about machine learning and hope to explore its
+            applications to fields like biology. Computational methods provide
+            crucial insights in tackling problems in biology and improving our
+            collective understanding of diseases and life. I also have experience
+            with education and enjoy helping people learn while motivating them to
+            pursue their interests.
+          </p>
+        </div>
+        <div class="card" id="manu">
+          <h3>Manu Hegde</h3>
+          <p>
+            My name is Manu Hegde and I am a sophomore CS student at UMass
+            Amherst. My particular interests lie in web development, machine
+            learning, and cybersecurity. My passion for CS focuses on its
+            intersection with other industries, as I believe this is where the
+            power of CS and its leverage can be seen. I have past experience
+            working in Fintech (Fidelity Investments), education (Kara Tutoring),
+            and national defense (MITRE), and am looking forward to gaining more
+            experience in software engineering through future experiences.
+          </p>
+        </div>
+        <div class="card" id="vin">
+          <div class="card-picture" id="vin-picture">
+            <img src="images/Baby_Vin.jpg">
+          </div>
+          <h3>Vinamra Tyagi</h3>
+          <p>
+            My name is Vinamra Tyagi, and I go by Vin. I am a sophomore CS UMass
+            student, thoroughly involved in developing and refining software since
+            2018. I have interests in ML/RL, and full-stack SWE. I have developed
+            a passion for developing functional programs that benefit not only
+            myself, but the world as a whole. I believe in the potential that CS
+            has for improving our planet, and would love to use my skills as a
+            developer to bring about that change!
+          </p>
+        </div>
+        <div class="card" id="aarav">
+          <div class="card-picture" id="aarav-picture">
+            <img src="images/Baby_Aarav.JPG">
+          </div>
+          <h3>Aarav Nair</h3>
+          <p>
+            I am a sophomore CS and math student. Much of my experience is in
+            mobile app development, but I am also interested in web development
+            and machine learning. I also enjoy learning about the intersection
+            between CS and the social sciences, and how we can use computers to
+            better understand data.
+          </p>
+        </div>
+      </div>
     </section>
 
     <section id="overview">
-      <h2>
-        This project focuses on raising awareness for climate change, and specifically using visual 
-        displays of real-world data to provide a tangible representation of the current state of the 
-        environment, so that it is more digestible for the average consumer. Furthermore, we want to 
-        provide interactive methods with this data so that users can truly understand the underlying 
-        factors and systems that contribute to climate change, allowing them to understand the 
-        urgency of climate change. Featuring an interactive map, detailed profiles of important facets 
-        of climate change and its underlying system, and a modern way of engaging with this content, 
-        we hope to shed light on what users can do to make an impact. The target audience is particularly 
-        people who are interested in learning more about climate change but don’t feel entirely confident 
-        of their knowledge, so they are showing an interest in this issue; our application will operate 
-        as a user-friendly platform that provides this knowledge in an easy-to-understand way. Ideally, 
-        we will have multiple sections that tackle different aspects of climate change, such as visualizing 
-        the current situation, detailing actions that can be taken by users, and showcasing the impact of 
-        key variables when it comes to overall impact on the planet. If this application is able to actively 
-        engage discussion regarding climate change and invoke this conversation, then we have succeeded 
-        with our project’s vision. 
-      </h2>
+      <h2>Overview</h2>
+      <p>This project focuses on raising awareness for climate change, and specifically using visual
+        displays of real-world data to provide a tangible representation of the current state of the
+        environment, so that it is more digestible for the average consumer. Furthermore, we want to
+        provide interactive methods with this data so that users can truly understand the underlying
+        factors and systems that contribute to climate change, allowing them to understand the
+        urgency of climate change. Featuring an interactive map, detailed profiles of important facets
+        of climate change and its underlying system, and a modern way of engaging with this content,
+        we hope to shed light on what users can do to make an impact. The target audience is particularly
+        people who are interested in learning more about climate change but don’t feel entirely confident
+        of their knowledge, so they are showing an interest in this issue; our application will operate
+        as a user-friendly platform that provides this knowledge in an easy-to-understand way. Ideally,
+        we will have multiple sections that tackle different aspects of climate change, such as visualizing
+        the current situation, detailing actions that can be taken by users, and showcasing the impact of
+        key variables when it comes to overall impact on the planet. If this application is able to actively
+        engage discussion regarding climate change and invoke this conversation, then we have succeeded
+        with our project's vision. </p>
     </section>
 
     <section id="application-parts">
-      <h2>
-        There are three main components of this application, that all interact with each other to be able 
-        to present climate change in an easy-to-view format that serves to inform, educate, and inspire. 
-        First and foremost, we have the implementation of the underlying data structure itself, as well as 
-        its visualization. Through the use of basic fetch, we procure data from API’s that pertain to the 
-        aspects of climate change that we will depict in the application, and through the use of clever CSS 
-        and JS interactivity, we will visualize the data in multiple formats, such as a map visualization 
-        and a more organized and traditional graph visualization. 
-        Beyond the simple visualization, our second component will include procuring the user’s location 
-        (with their permission) and being able to provide suggestions regarding aspects of climate change 
-        that may impact them in the future. Additionally, we can also point the user towards organizations 
-        that work towards mitigating climate change or reversing its effects on the environment. This 
-        allows the user to be aware of any possible dangers from climate change that they may be facing, 
+      <h2>Application Parts</h2>
+      <p>There are three main components of this application, that all interact with each other to be able
+        to present climate change in an easy-to-view format that serves to inform, educate, and inspire.
+        First and foremost, we have the implementation of the underlying data structure itself, as well as
+        its visualization. Through the use of basic fetch, we procure data from API's that pertain to the
+        aspects of climate change that we will depict in the application, and through the use of clever CSS
+        and JS interactivity, we will visualize the data in multiple formats, such as a map visualization
+        and a more organized and traditional graph visualization.
+        Beyond the simple visualization, our second component will include procuring the user's location
+        (with their permission) and being able to provide suggestions regarding aspects of climate change
+        that may impact them in the future. Additionally, we can also point the user towards organizations
+        that work towards mitigating climate change or reversing its effects on the environment. This
+        allows the user to be aware of any possible dangers from climate change that they may be facing,
         adding an intimate and personal aspect to this component of the application.
-        Finally, we have an explanation of the underlying causes of the aspect of climate change being 
-        viewed in the visualization. This allows users to be aware of human actions, scientific processes, 
-        legislation, and other factors that may affect the aspect of climate change that they are currently 
-        viewing. It helps build a comprehensive understanding of how serious this issue is.
-      </h2>
+        Finally, we have an explanation of the underlying causes of the aspect of climate change being
+        viewed in the visualization. This allows users to be aware of human actions, scientific processes,
+        legislation, and other factors that may affect the aspect of climate change that they are currently
+        viewing. It helps build a comprehensive understanding of how serious this issue is.</p>
     </section>
 
     <section id="data-requirements">
-      <h2></h2>
+      <h2>Data requirements</h2>
+      <p>Test content</p>
     </section>
 
-    <section id="wire-frames"></section>
+    <section id="wire-frames">
+      <h2>Wire Frames</h2>
+      <p>Test content</p>
+    </section>
 
     <section id="real-world">
-      Our application is meant to serve as an educational platform for all those interested in learning 
-      more about climate change, as our central goal is to raise awareness of this issue and foster a sense 
-      of community and action. For many, their inaction towards climate change simply comes from a lack of 
-      knowledge and understanding, and oftentimes these same individuals do want to learn about climate 
-      change. Furthermore, this is one of the few issues where individuals’ impacts truly matter, as if 
-      enough people band together with a common goal, a significant amount of change can occur as we work 
-      towards solving this issue one day at a time. Our goal is to complement this process, providing an 
-      application that serves as a centerpiece for all the information that someone can learn about this 
-      issue and get involved in this advocacy at a local and national level. 
-      Of course, many factors impact climate change and have led to the current state of the world we live 
-      in today. One of the biggest factors is the release of greenhouse gasses, such as carbon dioxide and 
-      methane. Much confusion surrounds the severity of this problem; not only do many believe that this 
-      isn’t an important issue, but they also see it as a far-removed issue that they can have no impact on. 
-      However, it is the complete opposite on both accounts. Not only are greenhouse gasses one of the most 
-      important issues in the world today, involving not just the environment, but the progress of our world’s 
-      energy avenues and economic development, but it is something that individuals can have an impact on 
-      through their direct actions. This is what we hope our application will achieve; inspiring users to 
-      care about climate change and use their leverage and impact to make a difference. 
-      In order to communicate this information, we understand the importance of how this information is 
-      presented. First, the view of the central map will serve as the main example of visualization for 
-      the user, showcasing data to the user to allow them to understand the current state of the situation. 
-      By interacting with this display, the user can enrich their understanding and understand the severity 
-      and importance of the issue, thereby realizing why this platform was developed in the first place. 
-      From here, our display of the system of climate change will shed insight into the true inner workings 
-      of the entire situation, further allowing users to understand the factors that contribute to this 
-      problem and the actions that need to be taken in order to alleviate this. Potentially, this could 
-      involve a type of simulation, allowing users to experiment with these factors to specifically see 
-      their impact on the situation. Finally, the communal aspect is key for truly being able to create 
-      change; awareness is simply the first step in this journey and will be moot if it isn’t applied to 
-      the real world. By allowing our users to band together and be able to find local connections to 
-      continue taking action regarding this issue, will allow these thoughts to manifest into concrete 
-      steps of impact. By providing key information, the user is now informed and equipped with the knowledge 
-      they need to make change in the world. With the power of the community, our product highlights the 
-      symbiotic relationship between advocacy and collaboration in achieving true change. 
-      Ultimately, our product aims to connect individuals to the idea of climate change and promote the 
-      steps to action to address this issue. We want to tackle multiple aspects of the real-world 
-      connection, providing not just the contextual understanding but also the catalyst for the conversation 
-      and the resources to spark this change. Climate change won’t be solved simply through forced means; 
-      it requires the collective effort of everyone, which can only be made possible by fostering a communal 
-      understanding of our role in the world today. Our product is a symbol of the power of computer science, 
-      leveraging our skills to raise awareness and create change in the world. Furthermore, in an ideal 
-      situation, our product would be successful if it eventually was not used anymore; by providing this 
-      awareness and call for action, our hope is for this to inspire others to continuously advocate for 
-      these efforts, resulting in a reinforcing loop that only grows as more get involved. It is this result 
-      that will truly show whether our vision was achieved, and showcases the path that we want to go down 
-      in order to allow our application to reach its fullest potential. 
+      <h2>Real World Connection</h2>
+      <p>Our application is meant to serve as an educational platform for all those interested in learning
+        more about climate change, as our central goal is to raise awareness of this issue and foster a sense
+        of community and action. For many, their inaction towards climate change simply comes from a lack of
+        knowledge and understanding, and oftentimes these same individuals do want to learn about climate
+        change. Furthermore, this is one of the few issues where individuals' impacts truly matter, as if
+        enough people band together with a common goal, a significant amount of change can occur as we work
+        towards solving this issue one day at a time. Our goal is to complement this process, providing an
+        application that serves as a centerpiece for all the information that someone can learn about this
+        issue and get involved in this advocacy at a local and national level.
+        Of course, many factors impact climate change and have led to the current state of the world we live
+        in today. One of the biggest factors is the release of greenhouse gasses, such as carbon dioxide and
+        methane. Much confusion surrounds the severity of this problem; not only do many believe that this
+        isn't an important issue, but they also see it as a far-removed issue that they can have no impact on.
+        However, it is the complete opposite on both accounts. Not only are greenhouse gasses one of the most
+        important issues in the world today, involving not just the environment, but the progress of our world's
+        energy avenues and economic development, but it is something that individuals can have an impact on
+        through their direct actions. This is what we hope our application will achieve; inspiring users to
+        care about climate change and use their leverage and impact to make a difference.
+        In order to communicate this information, we understand the importance of how this information is
+        presented. First, the view of the central map will serve as the main example of visualization for
+        the user, showcasing data to the user to allow them to understand the current state of the situation.
+        By interacting with this display, the user can enrich their understanding and understand the severity
+        and importance of the issue, thereby realizing why this platform was developed in the first place.
+        From here, our display of the system of climate change will shed insight into the true inner workings
+        of the entire situation, further allowing users to understand the factors that contribute to this
+        problem and the actions that need to be taken in order to alleviate this. Potentially, this could
+        involve a type of simulation, allowing users to experiment with these factors to specifically see
+        their impact on the situation. Finally, the communal aspect is key for truly being able to create
+        change; awareness is simply the first step in this journey and will be moot if it isn't applied to
+        the real world. By allowing our users to band together and be able to find local connections to
+        continue taking action regarding this issue, will allow these thoughts to manifest into concrete
+        steps of impact. By providing key information, the user is now informed and equipped with the knowledge
+        they need to make change in the world. With the power of the community, our product highlights the
+        symbiotic relationship between advocacy and collaboration in achieving true change.
+        Ultimately, our product aims to connect individuals to the idea of climate change and promote the
+        steps to action to address this issue. We want to tackle multiple aspects of the real-world
+        connection, providing not just the contextual understanding but also the catalyst for the conversation
+        and the resources to spark this change. Climate change won't be solved simply through forced means;
+        it requires the collective effort of everyone, which can only be made possible by fostering a communal
+        understanding of our role in the world today. Our product is a symbol of the power of computer science,
+        leveraging our skills to raise awareness and create change in the world. Furthermore, in an ideal
+        situation, our product would be successful if it eventually was not used anymore; by providing this
+        awareness and call for action, our hope is for this to inspire others to continuously advocate for
+        these efforts, resulting in a reinforcing loop that only grows as more get involved. It is this result
+        that will truly show whether our vision was achieved, and showcases the path that we want to go down
+        in order to allow our application to reach its fullest potential. </p>
     </section>
 
     <section id="integrative-experience">
-      Developing our product embodies the meaning of the integrative experience, requiring us to be 
-      proficient at web development and design to architect an effective web application, but also an 
-      understanding of our issue and the best way of leveraging our skills to be able to tackle it on all 
-      fronts, thoroughly challenging us. Being able to merge our personal experiences, both relevant to our
-      development, as well as to our lives, is one of the most enthralling aspects of this project, and also 
-      highlights the possible problems with working in a team as well.
+      <h2>Integrative Experience</h2>
+      <p>Developing our product embodies the meaning of the integrative experience, requiring us to be
+        proficient at web development and design to architect an effective web application, but also an
+        understanding of our issue and the best way of leveraging our skills to be able to tackle it on all
+        fronts, thoroughly challenging us. Being able to merge our personal experiences, both relevant to our
+        development, as well as to our lives, is one of the most enthralling aspects of this project, and also
+        highlights the possible problems with working in a team as well.</p>
     </section>
 
     <aside>
