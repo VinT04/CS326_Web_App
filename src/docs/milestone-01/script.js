@@ -1,6 +1,7 @@
 const pictures = {"victor": ["images/baby_victor.jpg", "images/mid_victor.jpg", "images/old_victor.jpg"], 
 "aarav": ["images/Baby_Aarav.JPG", "images/eyes_aarav.jpg", "images/Modern_Aarav.JPG"], 
-"vin": ["images/Baby_Vin.jpg", "images/Mid_Vin.jpg", "images/Bio_Image_Vin_1.jpg"]}
+"vin": ["images/Baby_Vin.jpg", "images/Mid_Vin.jpg", "images/Bio_Image_Vin_1.jpg"],
+"manu": ["images/Manu_Baby_Picture.jpg", "images/Mid_Manu.jpg", "images/Modern_Manu.jpg"]}
 
 function shufflePictures(person) {
     const card = document.getElementById(person + "-picture");
