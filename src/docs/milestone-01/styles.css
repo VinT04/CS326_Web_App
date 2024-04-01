@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-h1, h2 {
+h1, h2, h3 {
   font-family: 'Arvo', sans-serif
 }
 
@@ -15,8 +15,9 @@ html, body {
 }
 
 a {
-  transition: 1s all linear;
+  transition: 0.25s all ease;
 }
+
 
 .nav-bar-header {
   position: fixed;
@@ -26,13 +27,16 @@ a {
   height: 8vh;
   background-color: seagreen;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   z-index: 100;
 }
 
 .nav-bar {
   width: 100%;
+  font-family: 'Raleway', monospace;
+  display: flex;
+  justify-content: center;
 }
 
 .nav-list {
@@ -194,6 +198,7 @@ a {
   /* height: 10%; */
   height: 100%;
   border-radius: 50px;
+  box-shadow: 2.6px 5.3px 5.3px hsl(0deg 0% 0% / 0.42);
 }
 
 
@@ -202,4 +207,10 @@ a {
   width: 1920px;
   height: 1080px;
   border-radius: 50px;
+  box-shadow: 2.6px 5.3px 5.3px hsl(0deg 0% 0% / 0.42);
+}
+
+.wireframe-picture img:hover, .wireframe-picture2 img:hover {
+  transform: scale(1.05);
+  transition: 0.25s all ease;
 }
