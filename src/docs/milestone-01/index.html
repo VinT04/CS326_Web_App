@@ -19,7 +19,7 @@
       <!-- Links to different sections/pages-->
       <ul class="nav-list">
         <li><a class="nav-link" href="#">Home</a></li>
-        <li><a class="nav-link" href="#vision">Vision</a></li>
+        <!-- <li><a class="nav-link" href="#vision">Vision</a></li> -->
         <li><a class="nav-link" href="#team">Team</a></li>
         <li><a class="nav-link" href="#overview">Overview</a></li>
         <li><a class="nav-link" href="#application-parts">Application Parts</a></li>
@@ -33,17 +33,23 @@
 
   <main>
     <!-- Main content of the document -->
-    <section>
-      <h2>ClimaSense</h2>
-      <h2>ClimaSense</h2>
+    <section id="title">
+      <div id="title-container">
+        <div id="title-text">
+          <h2>ClimaSense</h2>
+        </div>
+      </div>
     </section>
     <section id="team">
       <!-- Related content or subsections -->
       <h2>Meet the team</h2>
+      <p>Click each card to see more photos!</p>
       <div class="card-wrapper">
         <div class="card" id="victor">
-          <div class="card-picture" id="victor-picture">
-            <img src="images/baby_victor.jpg" alt="VICTOR CHEN">
+          <div class="card-picture">
+            <div class="card-picture-container" id="victor-picture">
+              <img src="images/baby_victor.jpg" alt="VICTOR CHEN">
+            </div>
           </div>
           <h3>Victor Chen</h3>
           <p>
@@ -57,8 +63,10 @@
           </p>
         </div>
         <div class="card" id="manu">
-          <div class="card-picture" id="manu-picture">
-            <img src="images/Manu_Baby_Picture.jpg" alt="MANU HEGDE">
+          <div class="card-picture">
+            <div class="card-picture-container" id="manu-picture">
+              <img src="images/Manu_Baby_Picture.jpg" alt="MANU HEGDE">
+            </div>
           </div>
           <h3>Manu Hegde</h3>
           <p>
@@ -73,8 +81,10 @@
           </p>
         </div>
         <div class="card" id="vin">
-          <div class="card-picture" id="vin-picture">
-            <img src="images/Baby_Vin.jpg" alt="VIN TYAGI">
+          <div class="card-picture">
+            <div class="card-picture-container" id="vin-picture">
+              <img src="images/Baby_Vin.jpg" alt="VIN TYAGI">
+            </div>
           </div>
           <h3>Vinamra Tyagi</h3>
           <p>
@@ -88,8 +98,10 @@
           </p>
         </div>
         <div class="card" id="aarav">
-          <div class="card-picture" id="aarav-picture">
-            <img src="images/Baby_Aarav.JPG" alt="AARAV NAIR">
+          <div class="card-picture">
+            <div class="card-picture-container" id="aarav-picture">
+              <img src="images/Baby_Aarav.JPG" alt="AARAV NAIR">
+            </div>
           </div>
           <h3>Aarav Nair</h3>
           <p>
@@ -103,7 +115,7 @@
       </div>
     </section>
 
-    <section id="overview">
+    <section class="body" id="overview">
       <h2>Overview</h2>
       <p>This project focuses on raising awareness for climate change, and specifically using visual
         displays of real-world data to provide a tangible representation of the current state of the
@@ -123,7 +135,7 @@
         with our project's vision. </p>
     </section>
 
-    <section id="application-parts">
+    <section class="body" id="application-parts">
       <h2>Application Parts</h2>
       <p>There are three main components of this application, that all interact with each other to be able
         to present climate change in an easy-to-view format that serves to inform, educate, and inspire.
@@ -144,59 +156,114 @@
         viewing. It helps build a comprehensive understanding of how serious this issue is.</p>
     </section>
 
-    <section id="data-requirements">
+    <section class="body" id="data-requirements">
       <h2>Data requirements</h2>
-      <p>Test content</p>
+      <p>
+        The core data requirement of our application will be comprehensive global climate data. This data will 
+        be fundamental for our application’s goal of informing users around the world about climate change. In 
+        particular, our application will utilize global location-based climate data in order to provide 
+        location-specific information regarding how the climate has been impacted over time. Location-based 
+        climate change data will be essential to allowing users to closely examine climate change in areas they 
+        are interested in. This data will include temperature, precipitation, sea level, atmospheric carbon dioxide, 
+        ocean temperature, ocean acidity, deforestation and many more metrics of the global climate. 
+
+        Alongside global climate data, our application will require data concerning the impact of humans on the 
+        climate. Through this data, we aim to highlight our society’s contribution to climate change over the last 
+        century. We aim to visualize the carbon emissions, energy consumption, and pollution levels by location to 
+        portray the negative impacts of humans on the environment. This will be essential in displaying how humans 
+        have played a key role in the changes to the global climate that will be portrayed by the previous data requirement.
+
+        User input will be an essential data requirement for our application’s simulation feature. Through the 
+        user’s inputted values and location, our simulation will provide an insight into how climate change will 
+        affect this location in the future given certain factors. Users will be able to control the impacts of climate 
+        change using factors such as temperature, CO2 levels, sea level, and many more. This input data will allow our 
+        application to be highly interactive and provide users with a close-up look at how climate change will impact the future.
+
+        Our application will also require a database of resources relating to climate change. As climate change is 
+        complex and continuously changing, it is important to provide users with online resources that will allow them 
+        to deepen their understanding beyond the information and visuals we provide. While we aim to make our application 
+        comprehensive in educating users about climate change, it is crucial to consider multiple resources and perspectives 
+        when learning about complex topics like climate change. By linking resources such as reputable articles and data 
+        visualizations, we provide users with the potential to continue exploring this important topic. In addition, we 
+        will aim to provide resources that correspond to actionable steps moving forward, such as petitions or initiatives 
+        that are actively fighting climate change, encouraging users to take action. It is also important that our database 
+        of resources contains locations associated with resources, as we will try to recommend resources based on the user’s location.
+
+        These data requirements will enable key features of our application, allowing us to better inform users about 
+        climate change through interactive visualizations and simulations, and provide relevant and actionable resources 
+        that encourage users to continue being actively involved in learning about and fighting climate change.
+      </p>
     </section>
 
-    <section id="wire-frames">
+    <section class="body" id="wire-frames">
       <h2>Wire Frames</h2>
-      <div class="wireframe-picture" id="map-picture">
-        <img src="images/Map.png">
+      <div id="wireframe-section-container">
+        <div class="wireframe-container">
+          <div class="wireframe-picture" id="map-picture">
+            <img src="images/Map.png">
+          </div>
+          <div class="wireframe-text">
+            <p>
+              This is the “main” view and is highlighted by a map of the word. 
+              The map is colored based on a category chosen by the user. 
+              Potential examples are carbon emissions, average temperature, and average rainfall. 
+              The category can be changed by clicking on the legend at the top of the page. 
+              When the user hovers over the map, they can see more information. 
+              For example, hovering over the US when the category is carbon emissions could show the specific amount as well as the largest sources of carbon. 
+              The goal of this map is to show users the facts without being overwhelming. 
+              A colorful map is a lot easier to look at than a list of facts.
+            </p>
+          </div>
+        </div>
+
+        <div class="wireframe-container">
+          <div class="wireframe-picture" id="slider-picture">
+            <img src="images/Sliders.png">
+          </div>
+          <div class="wireframe-text">
+            <p>
+              Underneath the map is a box with a variety of sliders. 
+              Each slider reflects a carbon-producing human activity, and by default each slider is set to 0. 
+              Moving the sliders around will change the map view to show how these changes will affect the climate. 
+              For example if the map is set to average rainfall, and the deforestation slider is set to -50%, 
+              the map on the top will change to show average rainfall in a world where deforestation decreases by 50%. 
+              The purpose of this view is to show the user that human activity affects climate change, 
+              and that it is not out of our control.
+            </p>
+          </div>
+        </div>
+        
+        <div class="wireframe-container">
+          <div class="wireframe-picture" id="uview-picture">
+            <img src="images/UView.png">
+          </div>
+          <div class="wireframe-text">
+            <p>
+              The “U-View” asks for the user's location. It then uses this location to give them specific information about that area. 
+              Examples include current and projected meteorological data, as well as possible local initiatives to combat climate change. 
+              The purpose of this page is to help users understand how climate change affects them. 
+              It can be easy to avoid the topic if you believe only those living in specific areas will be affected. 
+              We want to show them that everyone will be affected.
+            </p>
+          </div>
+        </div>
+
+        <div class="wireframe-container">
+          <div class="wireframe-picture" id="resource-picture">
+            <img src="images/Resources.png">
+          </div>
+          <div class="wireframe-text">
+            <p>
+              This view shows the user a variety of other resources to learn more about climate change and how to combat it. 
+              There are images with the logos of various organizations, and each image is a link to that organization. 
+              The purpose of this page is to keep the user engaged with the topic of climate change after they have visited our website. 
+            </p>
+          </div>
+        </div>
       </div>
-      <p>
-        This is the “main” view and is highlighted by a map of the word. 
-        The map is colored based on a category chosen by the user. 
-        Potential examples are carbon emissions, average temperature, and average rainfall. 
-        The category can be changed by clicking on the legend at the top of the page. 
-        When the user hovers over the map, they can see more information. 
-        For example, hovering over the US when the category is carbon emissions could show the specific amount as well as the largest sources of carbon. 
-        The goal of this map is to show users the facts without being overwhelming. 
-        A colorful map is a lot easier to look at than a list of facts.
-      </p>
-      <div class="wireframe-picture" id="slider-picture">
-        <img src="images/Sliders.png">
-      </div>
-      <p>
-        Underneath the map is a box with a variety of sliders. 
-        Each slider reflects a carbon producing human activity, and by default each slider is set to 0. 
-        Moving the sliders around will change the map view to show how these changes will affect the climate. 
-        For example if the map is set to average rainfall, and the deforestation slider is set to -50%, 
-        the map on the top will change to show average rainfall in a world where deforestation decreases by 50%. 
-        The purpose of this view is to show the user that human activity affects climate change, 
-        and that it is not out of our control.
-      </p>
-      <div class="wireframe-picture" id="uview-picture">
-        <img src="images/UView.png">
-      </div>
-      <p>
-        The “U-View” asks for the user’s location. It then uses this location to give them specific information about that area. 
-        Examples include current and projected meteorological data, as well as possible local initiatives to combat climate change. 
-        The purpose of this page is to help users understand how climate change affects them. 
-        It can be easy to avoid the topic if you believe only those living in specific areas will be affected. 
-        We want to show them that everyone will be affected.
-      </p>
-      <div class="wireframe-picture" id="resource-picture">
-        <img src="images/Resources.png">
-      </div>
-      <p>
-        This view shows the user a variety of other resources to learn more about climate change and how to combat it. 
-        There are images with the logos of various organizations, and each image is a link to that organization. 
-        The purpose of this page is to keep the user engaged with the topic of climate change after they have visited our website. 
-      </p>
     </section>
 
-    <section id="real-world">
+    <section class="body" id="real-world">
       <h2>Real World Connection</h2>
       <p>Our application is meant to serve as an educational platform for all those interested in learning
         more about climate change, as our central goal is to raise awareness of this issue and foster a sense
@@ -246,7 +313,7 @@
         in order to allow our application to reach its fullest potential. </p>
     </section>
 
-    <section id="integrative-experience">
+    <section class="body" id="integrative-experience">
       <h2>Integrative Experience</h2>
       <p>Developing this application embodies the essence of an integrative experience, requiring us to leverage the skills we
       have gained from prior courses and experiences to design an effective web application. For instance, in CS220 we learned
@@ -262,7 +329,7 @@
       Being able to merge our academic skill sets with our personal experiences is one of the most enthralling aspects of this
       project. Despite the challenges, we see the potential with developing in a team-based setting where our combined
       experiences will enable us to develop an exceptional application.
-</p>
+      </p>
     </section>
 
     <aside>
