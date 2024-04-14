@@ -1,0 +1,74 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\manuh\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js global dir --json
+
+PATH: 
+  C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Eclipse Foundation\jdk-16.0.2.7-hotspot\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\ProgramData\chocolatey\bin;C:\Users\manuh\AppData\Local\Programs\Git\usr\bin;C:\Users\manuh\AppData\Local\Programs\Python\Python36;C:\Users\manuh\AppData\Local\Programs\Python\Python36\Scripts;C:\Program Files\dotnet\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Cloudflare\Cloudflare WARP\;C:\Program Files\PuTTY\;C:\Users\manuh\mongosh-1.6.1-win32-x64\bin;C:\msys64\mingw64\bin;C:\Users\manuh\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\nodejs\;C:\Users\manuh\anaconda3\pkgs\graphviz-2.50.0-h7eca76f_1\Library\bin;C:\Program Files\Graphviz\bin;C:\Users\manuh\.cargo\bin;C:\Users\manuh\AppData\Local\Programs\Python\Python36\Scripts\;C:\Users\manuh\AppData\Local\Programs\Python\Python36\;C:\Users\manuh\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\manuh\AppData\Local\Programs\Python\Python39\;C:\Users\manuh\AppData\Local\Microsoft\WindowsApps;C:\Users\manuh\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\manuh\AppData\Local\Programs\Git\cmd;C:\Users\manuh\AppData\Local\GitHubDesktop\bin;C:\Users\manuh\AppData\Local\Programs\MiKTeX\miktex\bin\x64\;C:\Users\manuh\AppData\Roaming\npm
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  18.16.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  SyntaxError: c:\Users\manuh\CS326_Web_App\package.json: Unexpected string in JSON at position 904
+      at JSON.parse (<anonymous>)
+      at C:\Users\manuh\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (C:\Users\manuh\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
+      at C:\Users\manuh\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "type": "module",
+    "license": "AGPL-version-3.0",
+    "private": false,
+    "engines": {
+      "node": ">= 14.0.0",
+      "npm": ">= 6.0.0"
+    },
+    "homepage": "",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/VINAMRAGIT/CS326_Web_App"
+    },
+    "bugs": "",
+    "keywords": [],
+    "author": {
+      "name": "Team South South-East",
+      "email": "",
+      "url": "https://github.com/VinT04/CS326_Web_App"
+    },
+    "contributors": [
+      "Manu Hegde | manuhegde@umass.edu | mnhegde",
+      "Vinamra Tyagi | vtyagi@umass.edu | VinT04",
+      "Victor Chen | vqchen@umass.edu | vc64",
+      "Aarav Nair | aanair@umass.edu | aarav-nair"
+    ],
+    "scripts": {
+      "dev": "",
+      "test": "",
+      "milestone-01": "http-server src/docs/milestone-01 -p 3000 -c-1 -o -s",
+      "milestone-02": "http-server src/client -p 3000 -c-1 -o -s"
+      "validate-html": "html-validate src/**/*.html",
+      "prettier": "prettier src —write"
+    },
+    "devDependencies": {
+      "html-validate": "^8.11.1",
+      "http-server": "^14.1.1",
+      "prettier": "^3.2.5"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
