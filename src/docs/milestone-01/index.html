@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="styles.css">
   <!-- JavaScript Files -->
   <script type="module" src="script.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
   <style src="styles.css"></style>
 </head>
 
@@ -365,18 +366,13 @@
     </aside>
 
     <section>
+      <input class="slider" type="range" min="0" max="100" value="50"> 
+      <canvas id="predictionChart" style="width:100%;max-width:700px"></canvas>
       <div class="simulation" id="simulation">
-
         <div class="simulation_row">
           <p id="electricity_slider">Electricity</p> 
-          <!-- <label for="electricity">Electricity</label> -->
           <input type="range" id=“electricity” min=“-100” max="100" value=“0” step=“5” oninput="electricityRangeValue.innerText = this.value"> 
           <p id="electricityRangeValue">0</p> 
-        </div>
-        <div class="simulation_row">
-          <p id="transportation_slider">Transportation</p> 
-          <input type="range" id=transportation min=“-100” max="100" value=“0” step=“5” oninput="transportationRangeValue.innerText = this.value"> 
-          <p id="transportationRangeValue">0</p> 
         </div>
         <div class="simulation_row">
           <p id="transportation_slider">Transportation</p> 

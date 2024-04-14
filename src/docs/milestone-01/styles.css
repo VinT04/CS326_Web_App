@@ -249,5 +249,16 @@ a {
 .simulation_row {
   display: grid;
   grid-template-columns: auto auto auto;
+  /* column-gap: 50px; */
+  justify-items: center;
   width: 100vw;
+}
+
+.slider {
+  appearance: none; /* removes browser-specific styling */
+  width: 300px; /* width of slider */
+  height: 25px; /* height of slider */
+  background: #FF5C35 ; /* orange background */
+  outline: none; /* remove outline */
+  border-radius: 12px; /* round corners */
 }
