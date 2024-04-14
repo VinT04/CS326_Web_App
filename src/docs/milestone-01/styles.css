@@ -243,13 +243,11 @@ a {
 .simulation {
   display: grid;
   grid-template-columns: auto;
-  background-color: lightblue;
   width: 100vw;
 }
 
 .simulation_row {
   display: grid;
   grid-template-columns: auto auto auto;
-  /* background-color: lightblue; */
   width: 100vw;
 }
