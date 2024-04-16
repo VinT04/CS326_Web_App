@@ -5,6 +5,10 @@ h1, h2, h3 {
   font-family: 'Arvo', sans-serif
 }
 
+h3 {
+  font-size: 5px;
+}
+
 p {
   font-family: 'Raleway', monospace;
 }
@@ -115,20 +119,20 @@ a {
   text-align: center;
 }
 
-.card-wrapper {
-  justify-content: center;
+.card-container-wrapper {
   display: flex;
-  text-align: center;
-  width: auto;
-  height: auto;
-  overflow-y: scroll;
+  justify-content: center;
+  align-items: center;
+  padding-top: 300px;
 }
 
 .card {
   /* display: flex; */
+  position: absolute;
+  transform-origin: center;
   margin-bottom: 50px;
   margin: 5px;
-  width: 20%;
+  width: 150px;
   padding: 20px;
   transition: 0.15s;
   box-shadow: 2.6px 5.3px 5.3px hsl(0deg 0% 0% / 0.42);
@@ -136,7 +140,73 @@ a {
   /* text-align: center;
   justify-content: center; */
 }
+
+#Earth {
+  width: 24em;
+}
+
+.card_container {
+  position: absolute;
+    width: 24em;
+    height: 24em;
+    border: dashed 1px;
+    border-radius: 50%;
+    margin-top: 50px;
+}
+
+#card {
+  border-radius: 50%;
+  width: 100px;
+}
+
+#card:hover {
+  transition: box-shadow 0.25s ease;
+  box-shadow: 2.6px 5.3px 5.3px hsl(0deg 0% 0% / 0.42);
+}
+
+.deg0 {
+  transform: translate(9em, -31em);
+}
+
+/* 12em = half the width of the wrapper */
+.deg36 {
+  transform: translate(19em, -34em);
   
+}
+
+.deg72 {
+  transform: translate(24em, -32em);
+}
+
+.deg108 {
+  transform: translate(24em, -27em);
+}
+
+.deg144 {
+  transform: translate(18em, -27em);
+}
+
+.deg180 {
+  transform: translate(9em, -30em);
+}
+
+.deg216 {
+  transform: translate(-1em, -39em);
+}
+
+/* 12em = half the width of the wrapper */
+.deg252 {
+  transform: translate(-7em, -53em);
+}
+
+.deg288{
+  transform:translate(-7em, -69em);
+}
+
+.deg324{
+  transform: translate(-2em, -84em);
+}
+
 .card:hover {
   transform: scale(1.05);
 }
