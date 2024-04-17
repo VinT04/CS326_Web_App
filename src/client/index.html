@@ -13,88 +13,166 @@
 </head>
 
 <body>
-    <section id="title">
-        <div id="title-container">
-            <div id="title-text">
-                <h2>Resources</h2>
+
+    <header class="nav-bar-header">
+        <!-- Navigation bar, logo, etc. -->
+        <nav class="nav-bar">
+            <!-- Links to different sections/pages-->
+            <!-- <li><a class="nav-link" href="#vision">Vision</a></li> -->
+            <a class="nav-link" id="homeBtn" href="#">Home</a>
+            <a class="nav-link" id="mapBtn" href="#">Map</a>
+            <a class="nav-link" id="simBtn" href="#">Simulation</a>
+            <a class="nav-link" id="resourcesBtn" href="#">Resources</a>
+            <a class="nav-link" id="uviewBtn" href="#">U-view</a>
+        </nav>
+    </header>
+
+    <section id="resources-section" class="main-sections">
+        <section id="title">
+            <div id="title-container">
+                <div id="title-text">
+                    <h2>Resources</h2>
+                </div>
             </div>
+        </section>
+        <div id="description">
+            <h2>Why</h2>
+            <p>
+                To continue making great strides in climate change advocacy, activity within local, national and
+                international organizations is essential.
+                We believe that learning about these groups is essential to understanding where the fight is today and
+                how we as individuals can help contribute to this advocacy.
+                Whether it is something as small as spreading these organizations to others or something as big as
+                joining their missions, any type of contribution will help
+                in the long run. Below are some international organizations that are doing substantial work for
+                addressing climate change around the globe (hover on them to learn more!):
+            </p>
+        </div>
+        <div class='card-container-wrapper'>
+            <div class="card_container">
+                <img src="images/Earth.png" alt="EARTH IMAGE HERE" id='Earth'>
+                <div class="deg0" id='card'>
+                    <div class="tooltip" id="UNFCCC-tooltip">
+                        <span class="tooltip-text" id="UNFCCC-tooltip-text">Aims to reduce greenhouse gas emissions
+                            through international efforts</span>
+                    </div>
+                    <div class="card-picture" id="UNFCCC">
+                        <a href='https://unfccc.int/' target="_blank" class="card-picture-container">
+                            <img src="images/UN.png"
+                                alt="United Nations Framework Convention on Climate Change (UNFCCC)">
+                        </a>
+                    </div>
+
+                </div>
+                <div class="deg36" id='card'>
+                    <div class="tooltip" id="IPCC-tooltip">
+                        <span class="tooltip-text" id="IPCC-tooltip-text">Scientific body that provides assessments of
+                            current climate change strategies and impacts for
+                            policymakers</span>
+                    </div>
+                    <div class="card-picture" id="IPCC">
+                        <a href='https://www.ipcc.ch/' target="_blank" class="card-picture-container"><img
+                                src="images/ipccblue.jpg" alt="Intergovernmental Panel on Climate Change (IPCC)"></a>
+                    </div>
+                </div>
+                <div class="deg72" id='card'>
+                    <div class="tooltip" id="WMO-tooltip">
+                        <span class="tooltip-text" id="WMO-tooltip-text">Promotes international cooperation in
+                            meteorology and climatology, specifically focusing on climate monitoring</span>
+                    </div>
+                    <div class="card-picture" id="WMO">
+                        <a href='https://wmo.int/' target="_blank" class="card-picture-container">
+                            <img src="images/WMO.png" alt="World Meteorological Organization (WMO)">
+                        </a>
+                    </div>
+                </div>
+                <div class="deg108" id='card'>
+                    <div class="tooltip" id="World-Bank-tooltip">
+                        <span class="tooltip-text" id="World-Bank-tooltip-text">Finances climate change projects and
+                            promotes sustainable initiatives</span>
+                    </div>
+                    <div class="card-picture" id="World-Bank">
+                        <a href='https://www.worldbank.org/en/home' target="_blank" class="card-picture-container">
+                            <img src="images/WorldBank.jpg" alt="World Bank Group">
+                        </a>
+                    </div>
+                </div>
+                <div class="deg144" id='card'>
+                    <div class="tooltip" id="UNEP-tooltip">
+                        <span class="tooltip-text" id="UNEP-tooltip-text">The main organization that sets the global
+                            environment agenda and international policy</span>
+                    </div>
+                    <div class="card-picture" id="UNEP">
+                        <a href='https://www.unep.org/' target="_blank" class="card-picture-container">
+                            <img src="images/UNEP.png" alt="United Nations Environment Programme (UNEP)">
+                        </a>
+                    </div>
+                </div>
+                <div class="deg180" id='card'>
+                    <div class="tooltip" id="GCF-tooltip">
+                        <span class="tooltip-text" id="GCF-tooltip-text">Supports developing countries in their
+                            strategies against climate change</span>
+                    </div>
+                    <div class="card-picture" id="GCF">
+                        <a href='https://www.greenclimate.fund/' target="_blank" class="card-picture-container">
+                            <img src="images/Green_Climate_Fund.png" alt="Green Climate Fund (GCF)">
+                        </a>
+                    </div>
+                </div>
+                <div class="deg216" id='card'>
+                    <div class="tooltip" id="CAN-tooltip">
+                        <span class="tooltip-text" id="CAN-tooltip-text">A network of over 1,500 NGOs working to raise
+                            awareness and promote individual and governmental
+                            advocacy</span>
+                    </div>
+                    <div class="card-picture" id="CAN">
+                        <a href='https://climatenetwork.org/' target="_blank" class="card-picture-container">
+                            <img src="images/CAN.jpg" alt="Climate Action Network (CAN)">
+                        </a>
+                    </div>
+                </div>
+                <div class="deg252" id='card'>
+                    <div class="tooltip" id="Climate-Group-tooltip">
+                        <span class="tooltip-text" id="Climate-Group-tooltip-text">Non-profit that works with businesses
+                            and government to spur climate change action regarding
+                            energy</span>
+                    </div>
+                    <div class="card-picture" id="Climate-Group">
+                        <a href='https://www.theclimategroup.org/' target="_blank" class="card-picture-container">
+                            <img src="images/ClimateGroup.png" alt="The Climate Group">
+                        </a>
+                    </div>
+                </div>
+                <div class="deg288" id='card'>
+                    <div class="tooltip" id="GGGI-tooltip">
+                        <span class="tooltip-text" id="GGGI-tooltip-text">Intergovernmental organization that focuses on
+                            inclusive growth and sustainable development in
+                            countries</span>
+                    </div>
+                    <div class="card-picture" id="GGGI">
+                        <a href='https://gggi.org/' target="_blank" class="card-picture-container">
+                            <img src="images/GGGI.png" alt="Global Green Growth Institute (GGGI)">
+                        </a>
+                    </div>
+                </div>
+                <div class="deg324" id='card'>
+                    <div class="tooltip" id="IRENA-tooltip">
+                        <span class="tooltip-text" id="IRENA-tooltip-text">An intergovernmental organization that
+                            advocates for renewable energy and a low-carbon future</span>
+                    </div>
+                    <div class="card-picture" id="IRENA">
+                        <a href='https://www.irena.org/' target="_blank" class="card-picture-container">
+                            <img src="images/irena.jpg" alt="International Renewable Energy Agency (IRENA)">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="description">
+            <!--Have section about finding local orgs thru search here-->
         </div>
     </section>
-    <div class='card-container-wrapper'>
-        <div class="card_container">
-            <img src="images/Earth.png" alt="EARTH IMAGE HERE" id='Earth'>
-            <div class="deg0" id='card'>
-                <div class="card-picture">
-                    <a href='https://unfccc.int/' class="card-picture-container">
-                        <img src="images/UN.png" alt="United Nations Framework Convention on Climate Change (UNFCCC)">
-                    </a>
-                </div>
-            </div>
-            <div class="deg36" id='card'>
-                <div class="card-picture">
-                    <a href='https://www.ipcc.ch/' class="card-picture-container"><img src="images/ipccblue.jpg"
-                            alt="Intergovernmental Panel on Climate Change (IPCC)"></a>
-                </div>
-            </div>
-            <div class="deg72" id='card'>
-                <div class="card-picture">
-                    <a href='https://wmo.int/' class="card-picture-container">
-                        <img src="images/WMO.png" alt="World Meteorological Organization (WMO)">
-                    </a>
-                </div>
-            </div>
-            <div class="deg108" id='card'>
-                <div class="card-picture">
-                    <a href='https://www.worldbank.org/en/home' class="card-picture-container">
-                        <img src="images/WorldBank.jpg" alt="World Bank Group">
-                    </a>
-                </div>
-            </div>
-            <div class="deg144" id='card'>
-                <div class="card-picture">
-                    <a href='https://www.unep.org/' class="card-picture-container">
-                        <img src="images/UNEP.png" alt="United Nations Environment Programme (UNEP)">
-                    </a>
-                </div>
-            </div>
-            <div class="deg180" id='card'>
-                <div class="card-picture">
-                    <a href = 'https://www.greenclimate.fund/' class="card-picture-container">
-                        <img src="images/Green_Climate_Fund.png" alt="Green Climate Fund (GCF)">
-                    </a>
-                </div>
-            </div>
-            <div class="deg216" id='card'>
-                <div class="card-picture">
-                    <a href = 'https://climatenetwork.org/' class="card-picture-container">
-                        <img src="images/CAN.jpg" alt="Climate Action Network (CAN)">
-                    </a>
-                </div>
-            </div>
-            <div class="deg252" id='card'>
-                <div class="card-picture">
-                    <a href = 'https://www.theclimategroup.org/' class="card-picture-container">
-                        <img src="images/ClimateGroup.png" alt="The Climate Group">
-                    </a>
-                </div>
-            </div>
-            <div class="deg288" id='card'>
-                <div class="card-picture">
-                    <a href = 'https://gggi.org/' class="card-picture-container">
-                        <img src="images/GGGI.png" alt="Global Green Growth Institute (GGGI)">
-                    </a>
-                </div>
-            </div>
-            <div class="deg324" id='card'>
-                <div class="card-picture">
-                    <a href = 'https://www.irena.org/' class="card-picture-container">
-                        <img src="images/irena.jpg" alt="International Renewable Energy Agency (IRENA)">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <script src="index.js"></script>
 </body>
 
 </html>
