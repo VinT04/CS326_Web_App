@@ -317,12 +317,36 @@ a {
   appearance: none; 
   width: 300px; 
   height: 25px;
-  background: lightgreen ;
+  background: lightgreen;
   border-radius: 12px;
 }
 
-#predictionChart
-{
-    display: block;
-    margin: 0 auto;
+/* For webkit browsers */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border: 0;
+  border-radius: 50%;
+  background: blue;
+}
+
+/* For Firefox */
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border: 0;
+  border-radius: 50%;
+  background: blue;
+}
+
+#predictionChart {
+  display: block;
+  margin: 0 auto;
+}
+
+#simulateButton {
+  width: 200px;
+  margin: 0 auto;
 }
