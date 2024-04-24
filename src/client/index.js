@@ -88,14 +88,16 @@ for (p of cardPictures) {
 }
 
 function createSimulationChart() {
-    const electricityChange = document.getElementById("electricityRangeValue").innerText;
-    const transportationChange = document.getElementById("transportationRangeValue").innerText;
+    const electricityChange = parseFloat(document.getElementById("electricityRangeValue").innerText);
+    const transportationChange = parseFloat(document.getElementById("transportationRangeValue").innerText);
+    const agricultureChange = parseFloat(document.getElementById("agricultureRangeValue").innerText);
+    const industryChange = parseFloat(document.getElementById("industryRangeValue").innerText);
+    const otherChange = parseFloat(document.getElementById("otherRangeValue").innerText);
 
     const barColor = "green";
     const initialData = [49.5, 50, 50.5, 51, 51.5, 52, 52.5, 53, 53.5, 54, 54.5, 55, 55.5, 56, 56.5, 57];
     const xValues = [2025, 2030, 2035, 2040, 2045, 2050, 2055, 2060, 2065, 2070, 2075, 2080, 2085, 2090, 2095, 2100];
-    const yValues = initialData.map(data => data + 0.05 * parseFloat(electricityChange) + 0.05 * parseFloat(transportationChange));
-    // [0.5, 0.75, 0.5, 1, 0.5, 0.2554, 0.5, 0.333, 0.5, 0.65, 0.5, 0.89, 0.5, 0.56, 0.5, 0.57];
+    const yValues = initialData.map(data => data + 0.05 * electricityChange + 0.03 * transportationChange + 0.05 * agricultureChange + 0.04 * industryChange + 0.03 * otherChange);
 
     new Chart('predictionChart', {
         type: 'bar',
@@ -109,7 +111,7 @@ function createSimulationChart() {
         },       
         options: {
             scales: {
-              yAxes: [{ticks: {min: 35, max:70}}],
+              yAxes: [{ticks: {min: 25, max:80}}],
             }
           }
     });
