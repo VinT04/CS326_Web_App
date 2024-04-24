@@ -96,12 +96,17 @@ for (const p of cardPictures) {
     p.addEventListener("mouseout", () => tooltipDisplay(name));
 }
 
+const electricityRangeVal = document.getElementById("electricityRangeValue");
+const transportationRangeVal = document.getElementById("transportationRangeValue");
+const agricultureRangeVal = document.getElementById("agricultureRangeValue");
+const industryRangeVal = document.getElementById("industryRangeValue");
+const otherRangeVal = document.getElementById("otherRangeValue");
 function createSimulationChart() {
-    const electricityChange = parseFloat(document.getElementById("electricityRangeValue").innerText);
-    const transportationChange = parseFloat(document.getElementById("transportationRangeValue").innerText);
-    const agricultureChange = parseFloat(document.getElementById("agricultureRangeValue").innerText);
-    const industryChange = parseFloat(document.getElementById("industryRangeValue").innerText);
-    const otherChange = parseFloat(document.getElementById("otherRangeValue").innerText);
+    const electricityChange = parseFloat(electricityRangeVal.innerText);
+    const transportationChange = parseFloat(transportationRangeVal.innerText);
+    const agricultureChange = parseFloat(agricultureRangeVal.innerText);
+    const industryChange = parseFloat(industryRangeVal.innerText);
+    const otherChange = parseFloat(otherRangeVal.innerText);
 
     const initialData = [49.5, 50, 50.5, 51, 51.5, 52, 52.5, 53, 53.5, 54, 54.5, 55, 55.5, 56, 56.5, 57];
     const xValues = [2025, 2030, 2035, 2040, 2045, 2050, 2055, 2060, 2065, 2070, 2075, 2080, 2085, 2090, 2095, 2100];
@@ -155,6 +160,7 @@ clearButton.addEventListener("click", clearDB);
 
 async function saveToDB(name, value) {
   const val = await db.loadData(name);
+  console.log([name, value, val]);
   val.value = value;
   db.modifyData(val);
 }
@@ -163,7 +169,7 @@ const sliders = document.getElementsByClassName("slider");
 const dbVals = (await db.loadAllData());
 const pageData = {}
 dbVals.forEach(e => pageData[e._id] = parseInt(e.value));
-
+console.log(dbVals);
 if (!("current-view" in pageData)) db.saveData("current-view", "home-section");
 const currView = await db.loadData("current-view");
 sectionDisplay(currView.value);
@@ -173,6 +179,11 @@ for (const s of sliders) {
   else {
     s.value = pageData[s.id];
     document.getElementById(s.id + "RangeValue").innerHTML = s.value;
+  }
+  // console.log(s);
+  s.oninput = () => {
+    document.getElementById(`${s.id}RangeValue`).innerText = s.value;
+    saveToDB(s.id, s.value);
   }
   s.addEventListener("mouseup", () => saveToDB(s.id, s.value));  
 }
