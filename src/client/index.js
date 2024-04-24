@@ -118,13 +118,27 @@ function createSimulationChart() {
         },       
         options: {
             scales: {
-              yAxes: [{ticks: {
-                min: 20, 
-                max:80, 
-                stepSize: 5
-            }}],
+                yAxes: [{ticks: {
+                    min: 20, 
+                    max:80, 
+                    stepSize: 5
+                }}],
+            },
+        },
+        plugins: {
+            title: {
+                display: true,
+                text: 'Future Temperature Simulation',
+                color: 'navy',
+                position: 'bottom',
+                align: 'center',
+                font: {
+                    weight: 'bold'
+                },
+                padding: 8,
+                fullSize: true
             }
-          }
+        }
     });
 }
 createSimulationChart();
