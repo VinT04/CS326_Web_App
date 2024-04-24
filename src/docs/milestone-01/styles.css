@@ -484,3 +484,47 @@ cursor: pointer;
   display: block;
   opacity: 1;
 }
+
+/**** color selection ****/
+
+#color-select {
+  display: grid;
+  grid-template-columns: 15% 80%;
+  column-gap: 5%;
+}
+
+#color-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 0px;
+}
+
+.color-option {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  user-select: none;
+  padding: 0px;
+}
+
+.color-radio {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  appearance: none;
+  border: 0px white solid;
+  border-radius: 50%;
+}
+
+.color-radio:hover {
+  background-color: #ccc;
+}
+
+.color-radio.selected {
+  border-width: 2px;
+  opacity: 0.8;
+}
