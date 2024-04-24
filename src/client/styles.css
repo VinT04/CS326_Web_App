@@ -292,3 +292,34 @@ a {
   width: 300px;
   height: 150px;
 }
+
+.simulation {
+  display: grid;
+  grid-template-columns: auto;
+  width: 100vw;
+  margin: 0 auto;
+}
+
+.simulation_row {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  /* column-gap: 50px; */
+  justify-items: center;
+  width: 100vw;
+  margin: 0 auto;
+}
+
+.slider {
+  appearance: none; /* removes browser-specific styling */
+  width: 300px; /* width of slider */
+  height: 25px; /* height of slider */
+  background: lightgreen ; /* orange background */
+  /* outline: none; */
+  border-radius: 12px; /* round corners */
+}
+
+#predictionChart
+{
+    display: block;
+    margin: 0 auto;
+}
