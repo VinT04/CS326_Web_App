@@ -1,7 +1,7 @@
 function sectionDisplay(name) {
   // To hide all other sections when using navbar
-  sections = document.getElementsByClassName("main-sections");
-  for (s of sections) {
+  const sections = document.getElementsByClassName("main-sections");
+  for (const s of sections) {
     if (s.id !== name) s.style.display = "none";
     else s.style.removeProperty("display");
   }
@@ -82,8 +82,8 @@ document
   .getElementById("uviewBtn")
   .addEventListener("click", () => sectionDisplay("uview-section"));
 
-cardPictures = document.getElementsByClassName("card-picture");
-for (p of cardPictures) {
+const cardPictures = document.getElementsByClassName("card-picture");
+for (const p of cardPictures) {
     const name = p.id;
     p.addEventListener("mouseover", () => tooltipDisplay(name));
     p.addEventListener("mouseout", () => tooltipDisplay(name));
@@ -148,7 +148,7 @@ button.addEventListener('click', createSimulationChart);
 
 // map section
 
-function initializeColorBtns() {
+function initColorBtns() {
   for (const btnElement of colorBtns) {
     btnElement.style.background = colorKey[btnElement.getAttribute("data-color")];
     btnElement.addEventListener("click", () => {
@@ -175,7 +175,7 @@ const domainKey = {};
 async function initData() {
   let i = 1;
   while (i <= 4) {
-    data[`Data ${i}`] = await d3.csv(`mock_data${i}.csv`)
+    data[`Data ${i}`] = await d3.csv(`data/mock_data${i}.csv`)
       .then(rawData => {
         const [min, max, parsedData] = rawData.reduce((acc, elem) => {
           acc[2][elem["ISO3"]] = elem;
@@ -254,7 +254,7 @@ function initMap() {
     });
 
   svg.call(zoom);
-  return path;
+  return [path, g];
 }
 
 function makeMap(topology) {
@@ -382,7 +382,7 @@ initMapSlider();
 initDropdown();
 await initData();
 
-const path = initMap();
+const [path, g] = initMap();
 
 let colorScale = currColorScale();
 
@@ -393,7 +393,7 @@ slider.oninput = () => {
     updateMap();
 };
 
-const countryCodes = await d3.json("countryCodes.json")
+const countryCodes = await d3.json("data/countryCodes.json")
   .then(info => {
     return info.reduce((acc, elem) => {
       acc[parseInt(elem["country-code"])] = elem;
@@ -401,4 +401,4 @@ const countryCodes = await d3.json("countryCodes.json")
     }, {});
   });
 
-d3.json("world-110m2.json").then(makeMap);
+d3.json("data/world-110m2.json").then(makeMap);
