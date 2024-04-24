@@ -378,8 +378,10 @@ a {
 #map-container {
   display: grid;
   grid-template-columns: 80% 20%;
-  margin: 20px;
+  margin-top: 20px;
   color: #edf2f4;
+  width: 100%;
+  justify-content: center;
 }
 
 /** map sections **/
