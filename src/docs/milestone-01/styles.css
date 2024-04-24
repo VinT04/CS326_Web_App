@@ -62,21 +62,10 @@ a {
   background-color: green;
 }
 
-/* main {
-  position: relative;
-  margin-top: 8vh;
-} */
-
-
 #title {
   text-align: center;
   height: 300px;
   width: 100%;
-  /* display: table;
-  position: absolute;
-  top: 0;
-  left: 0; */
-  /* position: absolute; */
 }
 
 #title-container {

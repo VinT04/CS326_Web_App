@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+    <script type="module" src="index.js"></script>
 </head>
 
 <body>
@@ -177,7 +180,7 @@
     </section>
 
 
-    <section id="simulation-section" class="main-sections">
+    <section id="simulation-section" class="main-sections" style="display: none;">
         <section id="title">
             <div id="title-container">
                 <div id="title-text">
@@ -223,8 +226,72 @@
             </div>
         </section>
     </section>
-    <script src="index.js"></script>
 
+    <section id="map-section" class="main-sections" style="display: none;">
+        <section id="title">
+            <div id="title-container">
+                <div id="title-text">
+                    <h2>Map</h2>
+                </div>
+            </div>
+        </section>
+        <section id="map-container">
+            <div id="map"></div>
+            <div id="side-panel">
+                <center>
+                    <h2 id="data-title">Title for Data 1</h2>
+                </center>
+                <div id="info">
+                    <p class="data-text">Year: </p>
+                    <p id="year" class="data-field">1961</p>
+                    <p class="data-text">Country: </p>
+                    <p id="country" class="data-field">None</p>
+                    <p class="data-text" id="data-name">Data 1: </p>
+                    <p id="current-data" class="data-field">None</p>
+                </div>
+                <div id="customization">
+                    <div id="slider-section">
+                        <button id="animate">Play</button>
+                        <div id="slider-container">
+                            <input type="range" min="1961" max="2022" value="1961" step="1" id="year-slider">
+                        </div>
+                    </div>
+                    <div id="data-select">
+                        <p id="data-label">Data: </p>
+                        <div id="data-dropdown">
+                            <div id="data-selector">
+                                <span id="data-selected">Data 1</span>
+                                <div id="arrow"></div>
+                            </div>
+                            <ul id="data-menu">
+                                <li class="active">Data 1</li>
+                                <li>Data 2</li>
+                                <li>Data 3</li>
+                                <li>Data 4</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="color-select">
+                        <p>Color: </p>
+                        <div id="color-choices">
+                            <div class="color-option">
+                                <input type="button" class="color-radio selected" data-color="red">
+                            </div>
+                            <div class="color-option">
+                                <input type="button" class="color-radio blue" data-color="blue">
+                            </div>
+                            <div class="color-option">
+                                <input type="button" class="color-radio green" data-color="green">
+                            </div>
+                            <div class="color-option">
+                                <input type="button" class="color-radio purple" data-color="purple">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
 </body>
 
 </html>
