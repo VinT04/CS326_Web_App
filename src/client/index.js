@@ -209,14 +209,19 @@ function initMapSlider() {
   clearInterval(sliderUpdates);
 
   let btnState = 0;
-  animateBtn.onclick = () => {
+  function updateAnimateBtn() {
     btnState = 1 - btnState;
     animateBtn.innerText = ["Play","Stop"][btnState];
     slider.disabled = btnState === 1;
+  }
+  animateBtn.onclick = () => {
+    updateAnimateBtn();
     if (btnState === 1) {
+      slider.value = slider.value % 2022;
       sliderUpdates = setInterval(() => {
-        if (slider.value > 2022) {
-          slider.value = 0;
+        if (slider.value === "2022") {
+          updateAnimateBtn();
+          clearInterval(sliderUpdates);
         } else {
           slider.value++; 
         }
@@ -266,9 +271,9 @@ function makeMap(topology) {
   .attr("d", path)
   .style("opacity", 1)
   .attr("fill", d => {
-      const countryObj = countryCodes[d.id] || {}
-      const countryData = data[currentData][countryObj["alpha-3"]] || {};
-      return colorScale(countryData[sliderYear] || 0);
+    const countryObj = countryCodes[d.id] || {}
+    const countryData = data[currentData][countryObj["alpha-3"]] || {};
+    return colorScale(countryData[sliderYear] || 0);
   })
   .on("mouseover", mouseOver)
   .on("mouseleave", mouseLeave)
