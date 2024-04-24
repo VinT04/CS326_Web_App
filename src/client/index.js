@@ -217,10 +217,11 @@ function initColorBtns() {
 
 const data = {};
 const domainKey = {};
+const dataNameKey = {"Data 1 (ex: CO2)":1, "Data 2 (ex: Avg Temp)":2, "Data 3 (ex: Avg Rainfall)":3, "Data 4 (ex: Deforestation)":4}
 async function initData() {
   let i = 1;
   while (i <= 4) {
-    data[`Data ${i}`] = await d3.csv(`data/mock_data${i}.csv`)
+    data[i] = await d3.csv(`data/mock_data${i}.csv`)
       .then(rawData => {
         const [min, max, parsedData] = rawData.reduce((acc, elem) => {
           acc[2][elem["ISO3"]] = elem;
@@ -233,7 +234,7 @@ async function initData() {
           return [currMin, currMax, acc[2]];
         }, [Infinity, -Infinity, {}]);
         // will change this key name and all the specific names in this section when real data is used
-        domainKey[`Data ${i}`] = {min: Math.floor(min), max: Math.ceil(max)};
+        domainKey[i] = {min: Math.floor(min), max: Math.ceil(max)};
         return parsedData;
       });
     i++;
@@ -337,8 +338,8 @@ function mouseOver(event) {
   const countryID = event.srcElement.__data__.id;
   const countryObj = countryCodes[countryID] || {};
   const countryData = data[currentData][countryObj["alpha-3"]] || {};
-  country.innerText = countryObj["name"];
-  currData.innerText = `${countryData[sliderYear]} ${dataKey[currentData].units}`;
+  country.innerText = countryObj["name"] || "N/A";
+  currData.innerText = countryData[sliderYear] ? `${countryData[sliderYear]} ${dataKey[currentData].units}` : "No data available";
 }
 
 function mouseLeave() {
@@ -397,7 +398,7 @@ function initDropdown() {
         otherOption.classList.remove("active");
       });
       option.classList.toggle("active");
-      currentData = option.innerText;
+      currentData = dataNameKey[option.innerText];
       dataName.innerText = `${dataKey[currentData].label}:`;
       title.innerText = dataKey[currentData].title;
       updateMap();
@@ -406,7 +407,7 @@ function initDropdown() {
 }
 
 let currentColor = "red";
-let currentData = "Data 1";
+let currentData = 1;
 
 const map = document.getElementById("map");
 const country = document.getElementById("country");
@@ -421,10 +422,10 @@ const colorBtns = document.getElementsByClassName("color-radio");
 const colorKey = {red:"#ed3413", green:"#03ad36", blue:"#1a9cd9", purple:"#9803a6"};
 const scaleKey = {red: d3.interpolateYlOrRd, green: d3.interpolateBuGn, blue: d3.interpolateRdBu, purple: d3.interpolateMagma};
 const dataKey = {
-  "Data 1": {title: "Title for Data 1", units: "°F", label: "Data 1"},
-  "Data 2": {title: "Title for Data 2", units: "°C", label: "Data 2"},
-  "Data 3": {title: "Title for Data 3", units: "ppm", label: "Data 3"},
-  "Data 4": {title: "Title for Data 4", units: "in", label: "Data 4"}
+  1: {title: "Title for Data 1", units: "°F", label: "Data 1"},
+  2: {title: "Title for Data 2", units: "°C", label: "Data 2"},
+  3: {title: "Title for Data 3", units: "ppm", label: "Data 3"},
+  4: {title: "Title for Data 4", units: "in", label: "Data 4"}
 };
 
 initColorBtns();
