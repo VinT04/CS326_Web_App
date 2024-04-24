@@ -118,7 +118,7 @@ function createSimulationChart() {
         },       
         options: {
             scales: {
-              yAxes: [{ticks: {min: 25, max:80}}],
+              yAxes: [{ticks: {min: 20, max:80, stepSize: 5}}],
             }
           }
     });
