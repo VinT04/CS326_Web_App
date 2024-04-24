@@ -176,7 +176,8 @@
         </div>
     </section>
 
-    <section id="simulation-section" class="main-sections" style="display: none;">
+
+    <section id="simulation-section" class="main-sections">
         <section id="title">
             <div id="title-container">
                 <div id="title-text">
@@ -184,22 +185,42 @@
                 </div>
             </div>
         </section>
-        <canvas id="predictionChart" style="width:100%;max-width:700px"></canvas>
-        <div class="simulation" id="simulation">
-            <div class="simulation_row">
-                <p id="electricity_slider">Electricity</p>
-                <input type="range" id="electricity" min="-100" max="100" value="0" step="5"
-                    oninput="electricityRangeValue.innerText = this.value">
-                <p id="electricityRangeValue">0</p>
+        <section>
+            <canvas id="predictionChart" style="width:100%;max-width:700px"></canvas>
+            <div class="simulation" id="simulation">
+                <div class="simulation_row">
+                    <p id="electricity_slider">Electricity</p>
+                    <input type="range" id="electricity" min="-100" max="100" value="0" step="5"
+                        oninput="electricityRangeValue.innerText = this.value">
+                    <p id="electricityRangeValue">0</p>
+                </div>
+                <div class="simulation_row">
+                    <p id="transportation_slider">Transportation</p>
+                    <input type="range" id=transportation min="-100" max="100" value="0" step="5"
+                        oninput="transportationRangeValue.innerText = this.value">
+                    <p id="transportationRangeValue">0</p>
+                </div>
+                <div class="simulation_row">
+                    <p id="agriculture_slider">Agriculture</p>
+                    <input type="range" id=agriculture min="-100" max="100" value="0" step="5"
+                        oninput="agricultureRangeValue.innerText = this.value">
+                    <p id="agricultureRangeValue">0</p>
+                </div>
+                <div class="simulation_row">
+                    <p id="industry_slider">Industry</p>
+                    <input type="range" id=industry min="-100" max="100" value="0" step="5"
+                        oninput="industryRangeValue.innerText = this.value">
+                    <p id="industryRangeValue">0</p>
+                </div>
+                <div class="simulation_row">
+                    <p id="other_slider">Other</p>
+                    <input type="range" id=other min="-100" max="100" value="0" step="5"
+                        oninput="otherRangeValue.innerText = this.value">
+                    <p id="otherRangeValue">0</p>
+                </div>
+                <input id="simulateButton" type="button" value="Simulate" />
             </div>
-            <div class="simulation_row">
-                <p id="transportation_slider">Transportation</p>
-                <input type="range" id=transportation min="-100" max="100" value="0" step="5"
-                    oninput="transportationRangeValue.innerText = this.value">
-                <p id="transportationRangeValue">0</p>
-            </div>
-            <input id="simulateButton" type="button" value="Simulate" />
-        </div>
+        </section>
     </section>
     <script src="index.js"></script>
 
