@@ -160,7 +160,6 @@ clearButton.addEventListener("click", clearDB);
 
 async function saveToDB(name, value) {
   const val = await db.loadData(name);
-  console.log([name, value, val]);
   val.value = value;
   db.modifyData(val);
 }
@@ -169,7 +168,7 @@ const sliders = document.getElementsByClassName("slider");
 const dbVals = (await db.loadAllData());
 const pageData = {}
 dbVals.forEach(e => pageData[e._id] = parseInt(e.value));
-console.log(dbVals);
+
 if (!("current-view" in pageData)) db.saveData("current-view", "home-section");
 const currView = await db.loadData("current-view");
 sectionDisplay(currView.value);
@@ -180,19 +179,19 @@ for (const s of sliders) {
     s.value = pageData[s.id];
     document.getElementById(s.id + "RangeValue").innerHTML = s.value;
   }
-  // console.log(s);
   s.oninput = () => {
     document.getElementById(`${s.id}RangeValue`).innerText = s.value;
     saveToDB(s.id, s.value);
-  }
-  s.addEventListener("mouseup", () => saveToDB(s.id, s.value));  
+  } 
 }
 
 createSimulationChart();
 
 function clearDB() {
   for (const key of Object.keys(pageData)) {
-    saveToDB(key, 0);
+    if (key !== "current-view") {
+      saveToDB(key, 0);
+    }
   }
   for (const s of sliders) {
       s.value = 0;
