@@ -2,7 +2,7 @@ function sectionDisplay(name) {
   // To hide all other sections when using navbar
   sections = document.getElementsByClassName("main-sections");
   for (s of sections) {
-    if (s.id != name) s.style.display = none;
+    if (s.id !== name) s.style.display = "none";
     else s.style.removeProperty("display");
   }
 }
@@ -32,7 +32,7 @@ function tooltipDisplay(name) {
     }
     case "UNEP": {
       tipElement.innerText =
-        "responsible for coordinating\n responses to environmental issues\n within the United Nations system.";
+        "Responsible for coordinating\n responses to environmental issues\n within the United Nations system.";
       break;
     }
     case "GCF": {
@@ -57,7 +57,7 @@ function tooltipDisplay(name) {
     }
     case "IRENA": {
       tipElement.innerText =
-        "intergovernmental organization\n mandated to facilitate\n cooperation of renewable energy.";
+        "Intergovernmental organization\n mandated to facilitate\n cooperation of renewable energy.";
       break;
     }
   }
@@ -66,6 +66,8 @@ function tooltipDisplay(name) {
 function clearTooltipDisplay() {
   document.getElementById("tip").innerText = "";
 }
+
+document.getElementById("homeBtn").addEventListener("click", () => sectionDisplay("home-section"))
 
 document
   .getElementById("mapBtn")
