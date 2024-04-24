@@ -315,6 +315,19 @@ g {
   row-gap: 10px;
 }
 
+.data-text {
+  padding: 0;
+  align-self: center;
+  text-align: right;
+}
+
+.data-field {
+  min-height: 0;
+  min-width: 0;
+  padding: 0;
+  align-self: center;
+}
+
 /*** customization ***/
 
 #customization {
