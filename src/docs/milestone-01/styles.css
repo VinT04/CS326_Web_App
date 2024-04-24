@@ -271,6 +271,23 @@ a {
   overflow: hidden;
 }
 
+path {
+  stroke: white;
+  stroke-width: 0.1px;
+  z-index: 1;
+}
+
+g {
+  position: absolute;
+  left: 0;
+}
+
+.svg-responsive {
+  display: inline-block;
+  height: 100%;
+  left: 0;
+}
+
 /** side panel sections **/
 
 #side-panel {
@@ -280,4 +297,30 @@ a {
   display: grid;
   grid-template-rows: 15% 40% 40%;
   row-gap: 0%;
+}
+
+/*** title ***/
+
+#data-title {
+  margin: 10px 0px;
+}
+
+/*** info ***/
+
+#info {
+  display: grid;
+  grid-template-columns: 30fr 70fr;
+  grid-template-rows: 30px 50px 30px;
+  column-gap: 10px;
+  row-gap: 10px;
+}
+
+/*** customization ***/
+
+#customization {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  row-gap: 10px;
+  height: 120px;
+  text-align: right;
 }
