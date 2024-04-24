@@ -120,26 +120,24 @@ function createSimulationChart() {
         },       
         options: {
             scales: {
-                yAxes: [{ticks: {
-                    min: 20, 
-                    max:80, 
-                    stepSize: 5
-                }}],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Year'
+                    }
+                }],
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Temperature (°F)'
+                    },
+                    ticks: {
+                        min: 20, 
+                        max:80, 
+                        stepSize: 5
+                    }
+                }],
             },
-        },
-        plugins: {
-            title: {
-                display: true,
-                text: 'Future Temperature Simulation',
-                color: 'navy',
-                position: 'bottom',
-                align: 'center',
-                font: {
-                    weight: 'bold'
-                },
-                padding: 8,
-                fullSize: true
-            }
         }
     });
 }
