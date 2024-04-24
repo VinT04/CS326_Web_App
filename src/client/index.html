@@ -12,7 +12,8 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="https://unpkg.com/topojson@3"></script>
-    <script type="module" src="index.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/pouchdb@8.0.1/dist/pouchdb.min.js"></script>
+    <script type="module" src="index.js" defer></script>
 </head>
 
 <body>
@@ -21,20 +22,18 @@
         <!-- Navigation bar, logo, etc. -->
         <nav class="nav-bar">
             <!-- Links to different sections/pages-->
-            <!-- <li><a class="nav-link" href="#vision">Vision</a></li> -->
             <a class="nav-link" id="homeBtn" href="#">Home</a>
             <a class="nav-link" id="mapBtn" href="#">Map</a>
             <a class="nav-link" id="simBtn" href="#">Simulation</a>
             <a class="nav-link" id="resourcesBtn" href="#">Resources</a>
-            <a class="nav-link" id="uviewBtn" href="#">U-view</a>
         </nav>
     </header>
 
-    <section id="home-section" class="main-sections">
-        <section id="title">
-            <div id="title-container"
+    <section id="home-section" class="main-sections" style="display: none;">
+        <section class="title">
+            <div class="title-container"
                 style='background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/images/title-image.jpg")'>
-                <div id="title-text">
+                <div class="title-text">
                     <h2>ClimaSense</h2>
                 </div>
             </div>
@@ -77,9 +76,9 @@
     </section>
 
     <section id="resources-section" class="main-sections" style="display: none;">
-        <section id="title">
-            <div id="title-container">
-                <div id="title-text">
+        <section class="title">
+            <div class="title-container">
+                <div class="title-text">
                     <h2>Resources</h2>
                 </div>
             </div>
@@ -181,9 +180,9 @@
 
 
     <section id="simulation-section" class="main-sections" style="display: none;">
-        <section id="title">
-            <div id="title-container">
-                <div id="title-text">
+        <section class="title">
+            <div class="title-container">
+                <div class="title-text">
                     <h2>Simulation</h2>
                 </div>
             </div>
@@ -222,15 +221,18 @@
                         oninput="otherRangeValue.innerText = this.value">
                     <p id="otherRangeValue">0</p>
                 </div>
-                <input id="simulateButton" type="button" value="Simulate" />
+                <div id="button-container">
+                    <input id="simulateButton" class="formBtn" type="button" value="Simulate" />
+                    <input id="clearBtn" class="formBtn" type="button" value="Clear Values" />
+                </div>
             </div>
         </section>
     </section>
 
     <section id="map-section" class="main-sections" style="display: none;">
-        <section id="title">
-            <div id="title-container">
-                <div id="title-text">
+        <section class="title">
+            <div class="title-container">
+                <div class="title-text">
                     <h2>Map</h2>
                 </div>
             </div>
@@ -260,14 +262,14 @@
                         <p id="data-label">Data: </p>
                         <div id="data-dropdown">
                             <div id="data-selector">
-                                <span id="data-selected">Data 1</span>
+                                <span id="data-selected">Data 1 (ex: CO2)</span>
                                 <div id="arrow"></div>
                             </div>
                             <ul id="data-menu">
-                                <li class="active">Data 1</li>
-                                <li>Data 2</li>
-                                <li>Data 3</li>
-                                <li>Data 4</li>
+                                <li class="active">Data 1 (ex: CO2)</li>
+                                <li>Data 2 (ex: Avg Temp)</li>
+                                <li>Data 3 (ex: Avg Rainfall)</li>
+                                <li>Data 4 (ex: Deforestation)</li>
                             </ul>
                         </div>
                     </div>

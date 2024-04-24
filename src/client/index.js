@@ -1,9 +1,18 @@
-function sectionDisplay(name) {
+import * as db from "./db.js";
+
+// Load values from DB if they exist
+
+async function sectionDisplay(name) {
   // To hide all other sections when using navbar
   const sections = document.getElementsByClassName("main-sections");
   for (const s of sections) {
     if (s.id !== name) s.style.display = "none";
-    else s.style.removeProperty("display");
+    else {
+      s.style.removeProperty("display");
+      const currView = await db.loadData("current-view");
+      currView.value = name;
+      db.modifyData(currView);
+    }
   }
 }
 
@@ -67,8 +76,9 @@ function clearTooltipDisplay() {
   document.getElementById("tip").innerText = "";
 }
 
-document.getElementById("homeBtn").addEventListener("click", () => sectionDisplay("home-section"))
-
+document
+  .getElementById("homeBtn")
+  .addEventListener("click", () => sectionDisplay("home-section"));
 document
   .getElementById("mapBtn")
   .addEventListener("click", () => sectionDisplay("map-section"));
@@ -78,9 +88,6 @@ document
 document
   .getElementById("resourcesBtn")
   .addEventListener("click", () => sectionDisplay("resources-section"));
-document
-  .getElementById("uviewBtn")
-  .addEventListener("click", () => sectionDisplay("uview-section"));
 
 const cardPictures = document.getElementsByClassName("card-picture");
 for (const p of cardPictures) {
@@ -141,9 +148,47 @@ function createSimulationChart() {
         }
     });
 }
+const simButton = document.getElementById("simulateButton");
+simButton.addEventListener('click', createSimulationChart);
+const clearButton = document.getElementById("clearBtn");
+clearButton.addEventListener("click", clearDB);
+
+async function saveToDB(name, value) {
+  const val = await db.loadData(name);
+  val.value = value;
+  db.modifyData(val);
+}
+
+const sliders = document.getElementsByClassName("slider");
+const dbVals = (await db.loadAllData());
+const pageData = {}
+dbVals.forEach(e => pageData[e._id] = parseInt(e.value));
+
+if (!("current-view" in pageData)) db.saveData("current-view", "home-section");
+const currView = await db.loadData("current-view");
+sectionDisplay(currView.value);
+
+for (const s of sliders) {
+  if (!(s.id in pageData)) db.saveData(s.id, 0);
+  else {
+    s.value = pageData[s.id];
+    document.getElementById(s.id + "RangeValue").innerHTML = s.value;
+  }
+  s.addEventListener("mouseup", () => saveToDB(s.id, s.value));  
+}
+
 createSimulationChart();
-const button = document.getElementById("simulateButton");
-button.addEventListener('click', createSimulationChart);
+
+function clearDB() {
+  for (const key of Object.keys(pageData)) {
+    saveToDB(key, 0);
+  }
+  for (const s of sliders) {
+      s.value = 0;
+      document.getElementById(s.id + "RangeValue").innerHTML = 0;
+  }
+  createSimulationChart();
+}
 
 
 // map section

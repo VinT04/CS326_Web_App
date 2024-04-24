@@ -66,24 +66,13 @@ a {
   background-color: green;
 }
 
-/* main {
-  position: relative;
-  margin-top: 8vh;
-} */
-
-
-#title {
+.title {
   text-align: center;
   height: 300px;
   width: 100%;
-  /* display: table;
-  position: absolute;
-  top: 0;
-  left: 0; */
-  /* position: absolute; */
 }
 
-#title-container {
+.title-container {
   background: #008DDA;
   text-align: center;
   height: 100%;
@@ -93,16 +82,7 @@ a {
   background-size: cover;
 }
 
-#title-text {
-  /* display: table-cell;
-  vertical-align: middle; */
-  /* width: 50%;
-  height: 50%;
-  overflow: auto;
-  margin: auto;
-  position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0; */
-  /* border: solid black; */
+.title-text {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
@@ -355,7 +335,13 @@ a {
   margin: 0 auto;
 }
 
-#simulateButton {
+#button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.formBtn {
+  display: inline-block;
   width: 200px;
   margin: 20px auto;
   padding: 10px 20px; 
@@ -368,7 +354,7 @@ a {
   cursor: pointer;
 }
 
-#simulateButton:hover {
+.formBtn:hover {
   background-color: #001f3f; 
 }
 
