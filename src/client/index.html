@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 
@@ -129,7 +129,27 @@
             <!--Have section about finding local orgs thru search here-->
         </div>
     </section>
-    <script src="index.js"></script>
+
+
+
+    <section>
+        <canvas id="predictionChart" style="width:100%;max-width:700px"></canvas>
+        <div class="simulation" id="simulation">
+          <div class="simulation_row">
+            <p id="electricity_slider">Electricity</p> 
+            <input type="range" id="electricity" min="-100" max="100" value="0" step="5" oninput="electricityRangeValue.innerText = this.value"> 
+            <p id="electricityRangeValue">0</p> 
+          </div>
+          <div class="simulation_row">
+            <p id="transportation_slider">Transportation</p> 
+            <input type="range" id=transportation min="-100" max="100" value="0" step="5" oninput="transportationRangeValue.innerText = this.value"> 
+            <p id="transportationRangeValue">0</p> 
+          </div>
+          <input id="simulateButton" type="button" value="Simulate" />
+        </div>
+      </section>   
+      <script src="index.js"></script>
+    
 </body>
 
 </html>
