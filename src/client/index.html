@@ -187,10 +187,24 @@
                 </div>
             </div>
         </section>
+        <div class="description">
+            <h2>Reason for this Page:</h2>
+            <p>
+                To learn more about the factors that contribute to climate change, this page shows how these variables
+                will impact the projected temperature over time. The sliders represent the values at which
+                each variable will be set for the upcoming future, and the resulting graph displays how this change will
+                impact the projected temperature compared to the current predictions. If these variables create a worse
+                projection, the graph will represent this with red bars; otherwise, if the projections are an overall
+                improvement, the bars will remain green. Play around with the values and use the
+                <strong>Simulate</strong> button to experiment with the results. The results can be reset with the
+                <strong>Clear</strong> button.
+            </p>
+        </div>
         <section>
             <h2 style="text-align: center;"> Average Yearly Temperature in Massachusetts</h2>
             <canvas id="predictionChart" style="width:100%;max-width:700px"></canvas>
             <div class="simulation" id="simulation">
+                <h1 style="display: inline-block;">Variables:</h1>
                 <div class="simulation_row">
                     <p class="sliderName">Electricity</p>
                     <input class="slider" type="range" id="electricity" min="-100" max="100" value="0" step="5"
@@ -237,6 +251,18 @@
                 </div>
             </div>
         </section>
+        <div class="description">
+            <h2>Reason for this Page:</h2>
+            <p>
+                To truly understand the current state concerning climate change, we wanted to provide an easy
+                visualization of the progression of this issue over time. Below is an interactive map that showcases how
+                several different critical variables (CO2 emissions, temperature, rainfall, etc.) have changed over
+                time. The choropleth displays this data, and specific values by country can be viewed by hovering over
+                them. The play button shows the progression of these values over time, allowing users to see the
+                magnitude of change that has occurred. Experiment below to see what more you can learn about climate
+                change and what particularly surprises you!
+            </p>
+        </div>
         <section id="map-container">
             <div id="map"></div>
             <div id="side-panel">

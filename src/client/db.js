@@ -16,6 +16,7 @@ export async function loadData(name) {
     return val;
 }
 
+
 export async function removeData(name) {
   db.remove(name);
 }
