@@ -371,3 +371,281 @@ a {
 #simulateButton:hover {
   background-color: #001f3f; 
 }
+
+
+/* map view */
+
+#map-container {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  margin: 20px;
+  color: #edf2f4;
+}
+
+/** map sections **/
+
+#map {
+  /* margin-left: 50px; */
+  border-color: #1d3557;
+  border-width: 5px;
+  border-style: solid;
+  overflow: hidden;
+}
+
+path {
+  stroke: white;
+  stroke-width: 0.1px;
+  z-index: 1;
+}
+
+g {
+  position: absolute;
+  left: 0;
+}
+
+.svg-responsive {
+  display: inline-block;
+  height: 100%;
+  left: 0;
+}
+
+/** side panel sections **/
+
+#side-panel {
+  background-color: #1d3557;
+  padding: 20px;
+  position: relative;
+  display: grid;
+  grid-template-rows: 15% 40% 40%;
+  row-gap: 0%;
+}
+
+/*** title ***/
+
+#data-title {
+  margin: 10px 0px;
+}
+
+/*** info ***/
+
+#info {
+  display: grid;
+  grid-template-columns: 30fr 70fr;
+  grid-template-rows: 30px 50px 30px;
+  column-gap: 10px;
+  row-gap: 10px;
+}
+
+.data-text {
+  padding: 0;
+  align-self: center;
+  text-align: right;
+}
+
+.data-field {
+  min-height: 0;
+  min-width: 0;
+  padding: 0;
+  align-self: center;
+}
+
+/*** customization ***/
+
+#customization {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  row-gap: 10px;
+  height: 120px;
+  text-align: right;
+}
+
+/**** year slider ****/
+
+#slider-section {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 15% 80%;
+  column-gap: 5%;
+}
+
+#slider-container {
+  width: 100%;
+}
+
+#year-slider {
+  appearance: none;
+  width: 100%;
+  height: 10px;
+  background: #bdc8d4;
+  outline: none;
+  border-radius: 8px;
+  align-self: center;
+  margin: 0;
+}
+
+#year-slider::-webkit-slider-thumb {
+appearance: none;
+width: 10px;
+height: 30px;
+border: 2px white solid;
+border-radius: 10px;
+background: #1d3557; 
+cursor: pointer;
+}
+
+#year-slider:hover {
+  opacity: 0.8;
+}
+
+#animate {
+  background: #edf2f4;
+  border: 0px white solid;
+  border-radius: 5px;
+  height: 25px;
+  width: 40px;
+  font: inherit;
+  justify-self: right;
+}
+
+/**** data dropdown ****/
+
+#data-select {
+  display: grid;
+  grid-template-columns: 15% 80%;
+  column-gap: 5%;
+  margin: 0;
+  height: 40px;
+}
+
+#data-label {
+  align-self: center;
+  margin: 0;
+}
+
+#data-dropdown {
+  position: relative;
+  align-self: center;
+}
+
+#data-dropdown * {
+  box-sizing: border-box;
+}
+
+#data-selector {
+  background: #edf2f4;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px #edf2f4 solid;
+  border-radius: 0.5em;
+  padding: 0.2em 0.4em;
+  cursor: pointer;
+  transition: background 0.3s;
+  z-index: 1;
+}
+
+#data-selector:hover {
+  opacity: 0.8;
+}
+
+#data-selected {
+  user-select: none;
+}
+
+#arrow {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid black;
+  transition: 0.2s;
+  z-index: 2;
+}
+
+#arrow.rotated {
+  transform: rotate(180deg);
+}
+
+#data-menu {
+  list-style: none;
+  width: 100%;
+  padding: 0.2em 0.2em;
+  margin: 0;
+  background: #edf2f4;
+  color: black;
+  border: 1px black solid;
+  border-radius: 0.5em;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: 0.2s;
+  z-index: 1;
+  user-select: none;
+  cursor: pointer;
+  opacity: 0;
+  display: none;
+}
+
+#data-menu li {
+  padding: 0.2em 0.3em;
+  border-radius: 0.5em;
+  cursor: pointer;
+}
+
+#data-menu li:hover {
+  opacity: 0.8;
+}
+
+.active {
+  background: #dcd1d3;
+}
+
+#data-menu.open {
+  display: block;
+  opacity: 1;
+}
+
+/**** color selection ****/
+
+#color-select {
+  display: grid;
+  grid-template-columns: 15% 80%;
+  column-gap: 5%;
+}
+
+#color-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 0px;
+}
+
+.color-option {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  user-select: none;
+  padding: 0px;
+}
+
+.color-radio {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  appearance: none;
+  border: 0px white solid;
+  border-radius: 50%;
+}
+
+.color-radio:hover {
+  background-color: #ccc;
+}
+
+.color-radio.selected {
+  border-width: 2px;
+  opacity: 0.8;
+}

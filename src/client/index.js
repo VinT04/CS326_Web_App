@@ -144,3 +144,7 @@ function createSimulationChart() {
 createSimulationChart();
 const button = document.getElementById("simulateButton");
 button.addEventListener('click', createSimulationChart);
+
+
+// map section
+
