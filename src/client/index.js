@@ -1,7 +1,11 @@
 import * as db from "./db.js";
 
-// Load values from DB if they exist
-
+/**
+ * Displays the current section and hides all the others
+ * @async
+ * @param {string} name - The name of the section to display
+ * @returns {null}
+ */
 async function sectionDisplay(name) {
   // To hide all other sections when using navbar
   const sections = document.getElementsByClassName("main-sections");
@@ -16,6 +20,11 @@ async function sectionDisplay(name) {
   }
 }
 
+/**
+ * Displays the appropriate tooltip when hovered on by the user
+ * @param {string} name - The name of the selected resource
+ * @returns {null}
+ */
 function tooltipDisplay(name) {
   const tipElement = document.getElementById("tip");
   switch (name) {
@@ -41,7 +50,7 @@ function tooltipDisplay(name) {
     }
     case "UNEP": {
       tipElement.innerText =
-        "Responsible for coordinating\n responses to environmental issues\n within the United Nations system.";
+        "Responsible for coordinating\n responses to environmental issues within the United Nations system.";
       break;
     }
     case "GCF": {
@@ -72,6 +81,9 @@ function tooltipDisplay(name) {
   }
 }
 
+/**
+ * Clears tooltips that aren't selected by users
+ */
 function clearTooltipDisplay() {
   document.getElementById("tip").innerText = "";
 }
@@ -93,7 +105,7 @@ const cardPictures = document.getElementsByClassName("card-picture");
 for (const p of cardPictures) {
     const name = p.id;
     p.addEventListener("mouseover", () => tooltipDisplay(name));
-    p.addEventListener("mouseout", () => tooltipDisplay(name));
+    p.addEventListener("mouseout", () => clearTooltipDisplay());
 }
 
 function createSimulationChart() {
@@ -153,6 +165,13 @@ simButton.addEventListener('click', createSimulationChart);
 const clearButton = document.getElementById("clearBtn");
 clearButton.addEventListener("click", clearDB);
 
+/**
+ * Takes the name and value and updates this object in the DB
+ * @async
+ * @param {string} name - The name of the data item in the DB
+ * @param {any} value - The attribute to save with the key in the DB
+ * @returns {null}
+ */
 async function saveToDB(name, value) {
   const val = await db.loadData(name);
   val.value = value;
