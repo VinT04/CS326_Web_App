@@ -1,11 +1,7 @@
 import * as db from "./db.js";
 
-/**
- * Displays the current section and hides all the others
- * @async
- * @param {string} name - The name of the section to display
- * @returns {null}
- */
+// Load values from DB if they exist
+
 async function sectionDisplay(name) {
   // To hide all other sections when using navbar
   const sections = document.getElementsByClassName("main-sections");
@@ -20,11 +16,6 @@ async function sectionDisplay(name) {
   }
 }
 
-/**
- * Displays the appropriate tooltip when hovered on by the user
- * @param {string} name - The name of the selected resource
- * @returns {null}
- */
 function tooltipDisplay(name) {
   const tipElement = document.getElementById("tip");
   switch (name) {
@@ -50,7 +41,7 @@ function tooltipDisplay(name) {
     }
     case "UNEP": {
       tipElement.innerText =
-        "Responsible for coordinating\n responses to environmental issues within the United Nations system.";
+        "Responsible for coordinating\n responses to environmental issues\n within the United Nations system.";
       break;
     }
     case "GCF": {
@@ -81,9 +72,6 @@ function tooltipDisplay(name) {
   }
 }
 
-/**
- * Clears tooltips that aren't selected by users
- */
 function clearTooltipDisplay() {
   document.getElementById("tip").innerText = "";
 }
@@ -105,20 +93,32 @@ const cardPictures = document.getElementsByClassName("card-picture");
 for (const p of cardPictures) {
     const name = p.id;
     p.addEventListener("mouseover", () => tooltipDisplay(name));
-    p.addEventListener("mouseout", () => clearTooltipDisplay());
+    p.addEventListener("mouseout", () => tooltipDisplay(name));
 }
 
-function createSimulationChart() {
-    const electricityChange = parseFloat(document.getElementById("electricityRangeValue").innerText);
-    const transportationChange = parseFloat(document.getElementById("transportationRangeValue").innerText);
-    const agricultureChange = parseFloat(document.getElementById("agricultureRangeValue").innerText);
-    const industryChange = parseFloat(document.getElementById("industryRangeValue").innerText);
-    const otherChange = parseFloat(document.getElementById("otherRangeValue").innerText);
+const electricityRangeVal = document.getElementById("electricityRangeValue");
+const transportationRangeVal = document.getElementById("transportationRangeValue");
+const agricultureRangeVal = document.getElementById("agricultureRangeValue");
+const industryRangeVal = document.getElementById("industryRangeValue");
+const otherRangeVal = document.getElementById("otherRangeValue");
 
+/**
+ * Generates the simulation chart based on the values of the sliders. It takes the values in each of the sliders and uses them to apply a formula to the initial data.
+ * The chart then displays the original data and the projected data side by side, to allow the user to the consequences of their choices.
+ */
+function createSimulationChart() {
+    // Get the values of the 5 slides
+    const electricityChange = parseFloat(electricityRangeVal.innerText);
+    const transportationChange = parseFloat(transportationRangeVal.innerText);
+    const agricultureChange = parseFloat(agricultureRangeVal.innerText);
+    const industryChange = parseFloat(industryRangeVal.innerText);
+    const otherChange = parseFloat(otherRangeVal.innerText);
+
+    // Apply a formula to the initial data using the slider values
     const initialData = [49.5, 50, 50.5, 51, 51.5, 52, 52.5, 53, 53.5, 54, 54.5, 55, 55.5, 56, 56.5, 57];
     const xValues = [2025, 2030, 2035, 2040, 2045, 2050, 2055, 2060, 2065, 2070, 2075, 2080, 2085, 2090, 2095, 2100];
     const yValues = initialData.map(x => x + 0.05 * electricityChange + 0.03 * transportationChange + 0.05 * agricultureChange + 0.04 * industryChange + 0.03 * otherChange);
-    const projColor = yValues[0] > initialData[0] ? "red" : "green";
+    const projColor = yValues[0] > initialData[0] ? "red" : "green"; // The projected data will be red if temperature is higher, and green otherwise
 
     new Chart('predictionChart', {
         type: 'bar',
@@ -166,11 +166,9 @@ const clearButton = document.getElementById("clearBtn");
 clearButton.addEventListener("click", clearDB);
 
 /**
- * Takes the name and value and updates this object in the DB
- * @async
- * @param {string} name - The name of the data item in the DB
- * @param {any} value - The attribute to save with the key in the DB
- * @returns {null}
+ * Saves data to PouchDB, updating an existing entry with the same name if it is present already.
+ * @param {*} name Name of data to be saved.
+ * @param {*} value Value being saved.
  */
 async function saveToDB(name, value) {
   const val = await db.loadData(name);
@@ -193,14 +191,19 @@ for (const s of sliders) {
     s.value = pageData[s.id];
     document.getElementById(s.id + "RangeValue").innerHTML = s.value;
   }
-  s.addEventListener("mouseup", () => saveToDB(s.id, s.value));  
+  s.oninput = () => {
+    document.getElementById(`${s.id}RangeValue`).innerText = s.value;
+    saveToDB(s.id, s.value);
+  } 
 }
 
 createSimulationChart();
 
 function clearDB() {
   for (const key of Object.keys(pageData)) {
-    saveToDB(key, 0);
+    if (key !== "current-view") {
+      saveToDB(key, 0);
+    }
   }
   for (const s of sliders) {
       s.value = 0;
@@ -212,11 +215,17 @@ function clearDB() {
 
 // map section
 
+/**
+ * Initializes the buttons for customizing the color scheme of the map.
+ * Adds radio button functionality and updates the map and color scale.
+ */
 function initColorBtns() {
   for (const btnElement of colorBtns) {
+    // set color of each button according to custom element attribute
     btnElement.style.background = colorKey[btnElement.getAttribute("data-color")];
     btnElement.addEventListener("click", () => {
       for (const otherBtn of colorBtns) {
+        // mark clicked button as selected and unmark all other buttons
         if (otherBtn === btnElement) {
           otherBtn.classList.add("selected");
           otherBtn.style.borderWidth = "2px";
@@ -226,24 +235,43 @@ function initColorBtns() {
           otherBtn.style.borderWidth = "0px";
           otherBtn.opacity = "1";
         }
-        currentColor = btnElement.getAttribute("data-color");
+        // update the color scale with the clicked button's color
+        currentColor = btnElement.getAttribute("data-color")
         updateColorScale();
       }
+      // update map to display color change
       updateMap();
     });
   }
 }
 
+// stores all data, with keys being numberic IDs corresponding to each data file (see dataNameKey)
 const data = {};
+
+// stores the domain (min, max) for each data file
 const domainKey = {};
+
+// stores mapping between data names and numeric IDs
+const dataNameKey = {"Data 1 (ex: CO2)":1, "Data 2 (ex: Avg Temp)":2, "Data 3 (ex: Avg Rainfall)":3, "Data 4 (ex: Deforestation)":4}
+
+/**
+ * Initializes the data and domainKey objects by reading data files from /data.
+ * Reads data and creates an object for each data file with country ISO3 codes
+ * as keys and the corresponding data as values. These objects are stored in the
+ * data object.
+ */
 async function initData() {
   let i = 1;
+  // iterate through all data IDs
   while (i <= 4) {
-    data[`Data ${i}`] = await d3.csv(`data/mock_data${i}.csv`)
+    data[i] = await d3.csv(`data/mock_data${i}.csv`)
       .then(rawData => {
+        // obtain min and max values in the data, as well as a parsed version of the data
+        // that maps country ISO3 to the desired data values
         const [min, max, parsedData] = rawData.reduce((acc, elem) => {
           acc[2][elem["ISO3"]] = elem;
           const [currMin, currMax] = Object.entries(elem).reduce((domain, keyVal) => {
+            // only want to look at values which have a year as a key
             if (isNaN(keyVal[0])) {
               return domain;
             }
@@ -251,28 +279,22 @@ async function initData() {
           }, [Infinity, -Infinity]);
           return [currMin, currMax, acc[2]];
         }, [Infinity, -Infinity, {}]);
-        // will change this key name and all the specific names in this section when real data is used
-        domainKey[`Data ${i}`] = {min: Math.floor(min), max: Math.ceil(max)};
+        domainKey[i] = {min: Math.floor(min), max: Math.ceil(max)};
         return parsedData;
       });
     i++;
   }
 }
 
+/**
+ * Initializes map slider in side panel that controls the year displayed.
+ * Also sets up animation button next to the slider that automatically 
+ * moves through the entire range of years.
+ */
 function initMapSlider() {
-  let sliderUpdates = setInterval(() => {
-    if (slider.value > 2022) {
-      slider.value = 0;
-    } else {
-      slider.value++;
-    }
-    sliderYear = slider.value;
-    year.innerText = slider.value;
-    updateMap();
-  }, 200);
-  clearInterval(sliderUpdates);
-
+  let sliderUpdates = undefined;
   let btnState = 0;
+  // helper function to switch the state of the button and slider
   function updateAnimateBtn() {
     btnState = 1 - btnState;
     animateBtn.innerText = ["Play","Stop"][btnState];
@@ -280,6 +302,7 @@ function initMapSlider() {
   }
   animateBtn.onclick = () => {
     updateAnimateBtn();
+    // when button is clicked, automatically increment year and update the side panel and text
     if (btnState === 1) {
       slider.value = slider.value % 2022;
       sliderUpdates = setInterval(() => {
@@ -299,6 +322,11 @@ function initMapSlider() {
   }
 }
 
+/**
+ * Creates and initializes the data for the map, providing a view of various data metrics
+ * to the user
+ * @returns path which can be used to update the map and retrieve new data
+ */
 function initMap() {
   const svg = d3.select("#map").append("svg")
     .attr("preserveAspectRatio", "xMinYMin")
@@ -349,6 +377,11 @@ function makeMap(topology) {
   .on("mouseleave", mouseLeave)
 }
 
+/**
+ * Updates the country which is being hovered upon to highlight it and update the data 
+ * for the specified country
+ * @param {*} event the event activating the eventListener, generally "MouseOver"
+ */
 function mouseOver(event) {
   d3.selectAll(".Country")
       .transition()
@@ -362,10 +395,12 @@ function mouseOver(event) {
   const countryID = event.srcElement.__data__.id;
   const countryObj = countryCodes[countryID] || {};
   const countryData = data[currentData][countryObj["alpha-3"]] || {};
-  country.innerText = countryObj["name"];
-  currData.innerText = `${countryData[sliderYear]} ${dataKey[currentData].units}`;
+  country.innerText = countryObj["name"] || "N/A";
+  currData.innerText = countryData[sliderYear] ? `${countryData[sliderYear]} ${dataKey[currentData].units}` : "No data available";
 }
-
+/**
+ * Returns the country highlighted to normal hue and reverts the data display
+ */
 function mouseLeave() {
   d3.selectAll(".Country")
       .transition()
@@ -385,12 +420,16 @@ function mouseLeave() {
  * @returns A d3 color scale object corresponding to the current color scheme.
  */
 function currColorScale() {
-    return d3.scaleSequential()
-        .domain([domainKey[currentData].min, domainKey[currentData].max])
-        .interpolator(scaleKey[currentColor]);
+  return d3.scaleSequential()
+      .domain([domainKey[currentData].min, domainKey[currentData].max])
+      .interpolator(scaleKey[currentColor]);
 }
 const updateColorScale = () => colorScale = currColorScale();
 
+/**
+ * Updates the map based off of the year and recolors the map based off the new
+ * statistics
+ */
 function updateMap() {
   d3.selectAll("path")
     .transition()
@@ -403,6 +442,9 @@ function updateMap() {
     });
 }
 
+/**
+ * Initializes and creates the dropdown used to dictate which metric for data comparison is used.
+ */
 function initDropdown() {
   const dropdownSelection = document.getElementById("data-selector")
   const dropdownSelected = document.getElementById("data-selected")
@@ -426,7 +468,7 @@ function initDropdown() {
         otherOption.classList.remove("active");
       });
       option.classList.toggle("active");
-      currentData = option.innerText;
+      currentData = dataNameKey[option.innerText];
       dataName.innerText = `${dataKey[currentData].label}:`;
       title.innerText = dataKey[currentData].title;
       updateMap();
@@ -435,7 +477,7 @@ function initDropdown() {
 }
 
 let currentColor = "red";
-let currentData = "Data 1";
+let currentData = 1;
 
 // HTML elements
 const country = document.getElementById("country");
@@ -451,10 +493,10 @@ const colorBtns = document.getElementsByClassName("color-radio");
 const colorKey = {red:"#ed3413", green:"#03ad36", blue:"#1a9cd9", purple:"#9803a6"};
 const scaleKey = {red: d3.interpolateYlOrRd, green: d3.interpolateBuGn, blue: d3.interpolateRdBu, purple: d3.interpolateMagma};
 const dataKey = {
-  "Data 1": {title: "Title for Data 1", units: "°F", label: "Data 1"},
-  "Data 2": {title: "Title for Data 2", units: "°C", label: "Data 2"},
-  "Data 3": {title: "Title for Data 3", units: "ppm", label: "Data 3"},
-  "Data 4": {title: "Title for Data 4", units: "in", label: "Data 4"}
+  1: {title: "Title for Data 1", units: "°F", label: "Data 1"},
+  2: {title: "Title for Data 2", units: "°C", label: "Data 2"},
+  3: {title: "Title for Data 3", units: "ppm", label: "Data 3"},
+  4: {title: "Title for Data 4", units: "in", label: "Data 4"}
 };
 
 // initialize side panel features
