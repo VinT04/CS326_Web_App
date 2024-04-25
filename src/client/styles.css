@@ -273,6 +273,7 @@ a {
   height: 150px;
 }
 
+/* This is the one colum grid that stores the sliders */
 .simulation {
   display: grid;
   grid-template-columns: auto;
@@ -280,6 +281,7 @@ a {
   margin: 0 auto;
 }
 
+/* A row has 3 columns: slider name, slider, and value */
 .simulation_row {
   display: grid;
   grid-template-columns: auto auto auto;
