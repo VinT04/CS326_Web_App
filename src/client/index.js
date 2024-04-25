@@ -203,11 +203,17 @@ function clearDB() {
 
 // map section
 
+/**
+ * Initializes the buttons for customizing the color scheme of the map.
+ * Adds radio button functionality and updates the map and color scale.
+ */
 function initColorBtns() {
   for (const btnElement of colorBtns) {
+    // set color of each button according to custom element attribute
     btnElement.style.background = colorKey[btnElement.getAttribute("data-color")];
     btnElement.addEventListener("click", () => {
       for (const otherBtn of colorBtns) {
+        // mark clicked button as selected and unmark all other buttons
         if (otherBtn === btnElement) {
           otherBtn.classList.add("selected");
           otherBtn.style.borderWidth = "2px";
@@ -217,25 +223,43 @@ function initColorBtns() {
           otherBtn.style.borderWidth = "0px";
           otherBtn.opacity = "1";
         }
-        currentColor = btnElement.getAttribute("data-color");
+        // update the color scale with the clicked button's color
+        currentColor = btnElement.getAttribute("data-color")
         updateColorScale();
       }
+      // update map to display color change
       updateMap();
     });
   }
 }
 
+// stores all data, with keys being numberic IDs corresponding to each data file (see dataNameKey)
 const data = {};
+
+// stores the domain (min, max) for each data file
 const domainKey = {};
+
+// stores mapping between data names and numeric IDs
 const dataNameKey = {"Data 1 (ex: CO2)":1, "Data 2 (ex: Avg Temp)":2, "Data 3 (ex: Avg Rainfall)":3, "Data 4 (ex: Deforestation)":4}
+
+/**
+ * Initializes the data and domainKey objects by reading data files from /data.
+ * Reads data and creates an object for each data file with country ISO3 codes
+ * as keys and the corresponding data as values. These objects are stored in the
+ * data object.
+ */
 async function initData() {
   let i = 1;
+  // iterate through all data IDs
   while (i <= 4) {
     data[i] = await d3.csv(`data/mock_data${i}.csv`)
       .then(rawData => {
+        // obtain min and max values in the data, as well as a parsed version of the data
+        // that maps country ISO3 to the desired data values
         const [min, max, parsedData] = rawData.reduce((acc, elem) => {
           acc[2][elem["ISO3"]] = elem;
           const [currMin, currMax] = Object.entries(elem).reduce((domain, keyVal) => {
+            // only want to look at values which have a year as a key
             if (isNaN(keyVal[0])) {
               return domain;
             }
@@ -243,7 +267,6 @@ async function initData() {
           }, [Infinity, -Infinity]);
           return [currMin, currMax, acc[2]];
         }, [Infinity, -Infinity, {}]);
-        // will change this key name and all the specific names in this section when real data is used
         domainKey[i] = {min: Math.floor(min), max: Math.ceil(max)};
         return parsedData;
       });
@@ -251,20 +274,15 @@ async function initData() {
   }
 }
 
+/**
+ * Initializes map slider in side panel that controls the year displayed.
+ * Also sets up animation button next to the slider that automatically 
+ * moves through the entire range of years.
+ */
 function initMapSlider() {
-  let sliderUpdates = setInterval(() => {
-    if (slider.value > 2022) {
-      slider.value = 0;
-    } else {
-      slider.value++;
-    }
-    sliderYear = slider.value;
-    year.innerText = slider.value;
-    updateMap();
-  }, 200);
-  clearInterval(sliderUpdates);
-
+  let sliderUpdates = undefined;
   let btnState = 0;
+  // helper function to switch the state of the button and slider
   function updateAnimateBtn() {
     btnState = 1 - btnState;
     animateBtn.innerText = ["Play","Stop"][btnState];
@@ -272,6 +290,7 @@ function initMapSlider() {
   }
   animateBtn.onclick = () => {
     updateAnimateBtn();
+    // when button is clicked, automatically increment year and update the side panel and text
     if (btnState === 1) {
       slider.value = slider.value % 2022;
       sliderUpdates = setInterval(() => {
@@ -367,9 +386,9 @@ function mouseLeave() {
 }
 
 function currColorScale() {
-    return d3.scaleSequential()
-        .domain([domainKey[currentData].min, domainKey[currentData].max])
-        .interpolator(scaleKey[currentColor]);
+  return d3.scaleSequential()
+      .domain([domainKey[currentData].min, domainKey[currentData].max])
+      .interpolator(scaleKey[currentColor]);
 }
 const updateColorScale = () => colorScale = currColorScale();
 
