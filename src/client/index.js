@@ -101,17 +101,24 @@ const transportationRangeVal = document.getElementById("transportationRangeValue
 const agricultureRangeVal = document.getElementById("agricultureRangeValue");
 const industryRangeVal = document.getElementById("industryRangeValue");
 const otherRangeVal = document.getElementById("otherRangeValue");
+
+/**
+ * Generates the simulation chart based on the values of the sliders. It takes the values in each of the sliders and uses them to apply a formula to the initial data.
+ * The chart then displays the original data and the projected data side by side, to allow the user to the consequences of their choices.
+ */
 function createSimulationChart() {
+    // Get the values of the 5 slides
     const electricityChange = parseFloat(electricityRangeVal.innerText);
     const transportationChange = parseFloat(transportationRangeVal.innerText);
     const agricultureChange = parseFloat(agricultureRangeVal.innerText);
     const industryChange = parseFloat(industryRangeVal.innerText);
     const otherChange = parseFloat(otherRangeVal.innerText);
 
+    // Apply a formula to the initial data using the slider values
     const initialData = [49.5, 50, 50.5, 51, 51.5, 52, 52.5, 53, 53.5, 54, 54.5, 55, 55.5, 56, 56.5, 57];
     const xValues = [2025, 2030, 2035, 2040, 2045, 2050, 2055, 2060, 2065, 2070, 2075, 2080, 2085, 2090, 2095, 2100];
     const yValues = initialData.map(x => x + 0.05 * electricityChange + 0.03 * transportationChange + 0.05 * agricultureChange + 0.04 * industryChange + 0.03 * otherChange);
-    const projColor = yValues[0] > initialData[0] ? "red" : "green";
+    const projColor = yValues[0] > initialData[0] ? "red" : "green"; // The projected data will be red if temperature is higher, and green otherwise
 
     new Chart('predictionChart', {
         type: 'bar',
