@@ -298,6 +298,11 @@ function initMapSlider() {
   }
 }
 
+/**
+ * Creates and initializes the data for the map, providing a view of various data metrics
+ * to the user
+ * @returns path which can be used to update the map and retrieve new data
+ */
 function initMap() {
   const svg = d3.select("#map").append("svg")
     .attr("preserveAspectRatio", "xMinYMin")
@@ -342,6 +347,11 @@ function makeMap(topology) {
   .on("mouseleave", mouseLeave)
 }
 
+/**
+ * Updates the country which is being hovered upon to highlight it and update the data 
+ * for the specified country
+ * @param {*} event the event activating the eventListener, generally "MouseOver"
+ */
 function mouseOver(event) {
   d3.selectAll(".Country")
       .transition()
@@ -358,7 +368,9 @@ function mouseOver(event) {
   country.innerText = countryObj["name"] || "N/A";
   currData.innerText = countryData[sliderYear] ? `${countryData[sliderYear]} ${dataKey[currentData].units}` : "No data available";
 }
-
+/**
+ * Returns the country highlighted to normal hue and reverts the data display
+ */
 function mouseLeave() {
   d3.selectAll(".Country")
       .transition()
@@ -380,6 +392,10 @@ function currColorScale() {
 }
 const updateColorScale = () => colorScale = currColorScale();
 
+/**
+ * Updates the map based off of the year and recolors the map based off the new
+ * statistics
+ */
 function updateMap() {
   d3.selectAll("path")
     .transition()
@@ -392,6 +408,9 @@ function updateMap() {
     });
 }
 
+/**
+ * Initializes and creates the dropdown used to dictate which metric for data comparison is used.
+ */
 function initDropdown() {
   const dropdownSelection = document.getElementById("data-selector")
   const dropdownSelected = document.getElementById("data-selected")
