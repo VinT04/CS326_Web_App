@@ -165,6 +165,11 @@ simButton.addEventListener('click', createSimulationChart);
 const clearButton = document.getElementById("clearBtn");
 clearButton.addEventListener("click", clearDB);
 
+/**
+ * Saves data to PouchDB, updating an existing entry with the same name if it is present already.
+ * @param {*} name Name of data to be saved.
+ * @param {*} value Value being saved.
+ */
 async function saveToDB(name, value) {
   const val = await db.loadData(name);
   val.value = value;
@@ -349,6 +354,12 @@ function initMap() {
   return [path, g];
 }
 
+/**
+ * Creates the map using the TopoJSON data for the world and adding attributes to all 
+ * elements created using this data (in this case countries), including color.
+ * 
+ * @param {*} topology TopoJSON data for creating and displaying a map.
+ */
 function makeMap(topology) {
   const topoInfo = topojson.feature(topology, topology.objects.countries);
   g.selectAll("path")
@@ -404,6 +415,10 @@ function mouseLeave() {
   currData.innerText = "None";
 }
 
+/**
+ * Generates the d3 color scale corresponding to the currently chosen color scheme.
+ * @returns A d3 color scale object corresponding to the current color scheme.
+ */
 function currColorScale() {
   return d3.scaleSequential()
       .domain([domainKey[currentData].min, domainKey[currentData].max])
@@ -464,7 +479,7 @@ function initDropdown() {
 let currentColor = "red";
 let currentData = 1;
 
-const map = document.getElementById("map");
+// HTML elements
 const country = document.getElementById("country");
 const currData = document.getElementById("current-data");
 const slider = document.getElementById("year-slider");
@@ -474,6 +489,7 @@ const dataName = document.getElementById("data-name");
 const title = document.getElementById("data-title");
 const colorBtns = document.getElementsByClassName("color-radio");
 
+// define mappings for color, color scale, and metadata for the different data being displayed
 const colorKey = {red:"#ed3413", green:"#03ad36", blue:"#1a9cd9", purple:"#9803a6"};
 const scaleKey = {red: d3.interpolateYlOrRd, green: d3.interpolateBuGn, blue: d3.interpolateRdBu, purple: d3.interpolateMagma};
 const dataKey = {
@@ -483,15 +499,21 @@ const dataKey = {
   4: {title: "Title for Data 4", units: "in", label: "Data 4"}
 };
 
+// initialize side panel features
 initColorBtns();
 initMapSlider();
 initDropdown();
+
+// load and process data
 await initData();
 
+// initialize the map, storing references for updating the map later
 const [path, g] = initMap();
 
+// defining the current color scale
 let colorScale = currColorScale();
 
+// adding slider behavior for updating the map and text
 let sliderYear = slider.value;
 slider.oninput = () => {
     sliderYear = slider.value;
@@ -499,6 +521,7 @@ slider.oninput = () => {
     updateMap();
 };
 
+// getting country code to coutnry name mapping for all countries
 const countryCodes = await d3.json("data/countryCodes.json")
   .then(info => {
     return info.reduce((acc, elem) => {
@@ -507,4 +530,5 @@ const countryCodes = await d3.json("data/countryCodes.json")
     }, {});
   });
 
+// read in world topojson data, then create the map
 d3.json("data/world-110m2.json").then(makeMap);
