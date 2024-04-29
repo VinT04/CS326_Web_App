@@ -106,21 +106,6 @@ a {
   padding-top: 300px;
 }
 
-.card {
-  /* display: flex; */
-  position: absolute;
-  transform-origin: center;
-  margin-bottom: 50px;
-  margin: 5px;
-  width: 150px;
-  padding: 20px;
-  transition: 0.15s;
-  box-shadow: 2.6px 5.3px 5.3px hsl(0deg 0% 0% / 0.42);
-  border-radius: 25px;
-  /* text-align: center;
-  justify-content: center; */
-}
-
 #Earth {
   width: 24em;
   opacity: 50%;

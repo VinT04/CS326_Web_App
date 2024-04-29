@@ -93,7 +93,7 @@ const cardPictures = document.getElementsByClassName("card-picture");
 for (const p of cardPictures) {
     const name = p.id;
     p.addEventListener("mouseover", () => tooltipDisplay(name));
-    p.addEventListener("mouseout", () => tooltipDisplay(name));
+    p.addEventListener("mouseout", () => clearTooltipDisplay());
 }
 
 const electricityRangeVal = document.getElementById("electricityRangeValue");

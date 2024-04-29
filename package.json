@@ -42,6 +42,7 @@
     "prettier": "^3.2.5"
   },
   "dependencies": {
+    "express": "^4.19.2",
     "pouchdb": "^8.0.1"
   }
 }
