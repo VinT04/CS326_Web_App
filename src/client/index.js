@@ -16,6 +16,7 @@ async function sectionDisplay(name) {
   }
 }
 
+// Displays tooltips for the resources page
 function tooltipDisplay(name) {
   const tipElement = document.getElementById("tip");
   switch (name) {
@@ -72,6 +73,7 @@ function tooltipDisplay(name) {
   }
 }
 
+// Clears tooltips for the resources page
 function clearTooltipDisplay() {
   document.getElementById("tip").innerText = "";
 }
