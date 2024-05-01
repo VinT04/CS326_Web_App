@@ -1,6 +1,4 @@
-import * as db from "./db.js";
-
-// Load values from DB if they exist
+const URL = "http://localhost:3260";
 
 async function sectionDisplay(name) {
   // To hide all other sections when using navbar
@@ -9,9 +7,7 @@ async function sectionDisplay(name) {
     if (s.id !== name) s.style.display = "none";
     else {
       s.style.removeProperty("display");
-      const currView = await db.loadData("current-view");
-      currView.value = name;
-      db.modifyData(currView);
+      updateToDB("current-view", name);
     }
   }
 }
@@ -167,30 +163,51 @@ simButton.addEventListener('click', createSimulationChart);
 const clearButton = document.getElementById("clearBtn");
 clearButton.addEventListener("click", clearDB);
 
+async function loadFromDB(name) {
+  const resp = await fetch(URL + `/getData?name=${name}`);
+  const data = await resp.json();
+  return data;
+}
+
 async function saveToDB(name, value) {
-  const val = await db.loadData(name);
-  val.value = value;
-  db.modifyData(val);
+  fetch(URL + "/saveData", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({name, value})
+  });
+}
+
+async function updateToDB(name, value) {
+  fetch(URL + "/updateData", {
+    method: "PUT",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({name, value})
+  });
+}
+
+async function collectPageData(pageData) {
+  const resp = await fetch(URL + "/getAll");
+  const dbVals = await resp.json();
+  dbVals.forEach(e => pageData[e._id] = parseInt(e.value));
 }
 
 const sliders = document.getElementsByClassName("slider");
-const dbVals = (await db.loadAllData());
 const pageData = {}
-dbVals.forEach(e => pageData[e._id] = parseInt(e.value));
+await collectPageData(pageData);
 
-if (!("current-view" in pageData)) db.saveData("current-view", "home-section");
-const currView = await db.loadData("current-view");
+if (!("current-view" in pageData)) saveToDB("current-view", "home-section");
+const currView = await loadFromDB("current-view");
 sectionDisplay(currView.value);
 
 for (const s of sliders) {
-  if (!(s.id in pageData)) db.saveData(s.id, 0);
+  if (!(s.id in pageData)) saveToDB(s.id, 0);
   else {
     s.value = pageData[s.id];
     document.getElementById(s.id + "RangeValue").innerHTML = s.value;
   }
   s.oninput = () => {
     document.getElementById(`${s.id}RangeValue`).innerText = s.value;
-    saveToDB(s.id, s.value);
+    updateToDB(s.id, s.value);
   } 
 }
 
@@ -199,7 +216,7 @@ createSimulationChart();
 function clearDB() {
   for (const key of Object.keys(pageData)) {
     if (key !== "current-view") {
-      saveToDB(key, 0);
+      updateToDB(key, 0);
     }
   }
   for (const s of sliders) {

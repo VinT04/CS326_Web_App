@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  SyntaxError: c:\Users\manuh\CS326_Web_App\package.json: Unexpected string in JSON at position 904
+  SyntaxError: c:\Users\manuh\CS326_Web_App\package.json: Unexpected string in JSON at position 1034
       at JSON.parse (<anonymous>)
       at C:\Users\manuh\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1625:59
       at Generator.next (<anonymous>)
@@ -56,7 +56,9 @@ npm manifest:
       "dev": "",
       "test": "",
       "milestone-01": "http-server src/docs/milestone-01 -p 3000 -c-1 -o -s",
-      "milestone-02": "http-server src/client -p 3000 -c-1 -o -s"
+      "milestone-02": "http-server src/client -p 3000 -c-1 -o -s",
+      "milestone-03": "node src/server/server.js && npm run open http://localhost:3260",
+      "open": "start http://localhost:3260"
       "validate-html": "html-validate src/**/*.html",
       "prettier": "prettier src —write"
     },
@@ -64,6 +66,10 @@ npm manifest:
       "html-validate": "^8.11.1",
       "http-server": "^14.1.1",
       "prettier": "^3.2.5"
+    },
+    "dependencies": {
+      "express": "^4.19.2",
+      "pouchdb": "^8.0.1"
     }
   }
 
