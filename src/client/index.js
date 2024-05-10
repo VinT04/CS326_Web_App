@@ -1,3 +1,5 @@
+import { response } from "express";
+
 const URL = "http://localhost:3260";
 
 async function sectionDisplay(name) {
@@ -113,11 +115,14 @@ function createSimulationChart() {
     const otherChange = parseFloat(otherRangeVal.innerText);
 
     // Apply a formula to the initial data using the slider values
-    const initialData = [49.5, 50, 50.5, 51, 51.5, 52, 52.5, 53, 53.5, 54, 54.5, 55, 55.5, 56, 56.5, 57];
+    const countryCode = getLocation();
+    const data = getLocationData(countryCode);
+    
+    const initialData = [data, data + 0.5, data + 1, data + 1.5, data + 2, data + 2.5, data + 3, data + 3.5, data + 4, data + 4.5, data + 5, data + 5.5, data + 6, data + 6.5, data + 7, data + 7.5];
     const xValues = [2025, 2030, 2035, 2040, 2045, 2050, 2055, 2060, 2065, 2070, 2075, 2080, 2085, 2090, 2095, 2100];
     const yValues = initialData.map(x => x + 0.05 * electricityChange + 0.03 * transportationChange + 0.05 * agricultureChange + 0.04 * industryChange + 0.03 * otherChange);
     const projColor = yValues[0] > initialData[0] ? "red" : "green"; // The projected data will be red if temperature is higher, and green otherwise
-
+    
     new Chart('predictionChart', {
         type: 'bar',
         data: {
@@ -165,17 +170,35 @@ clearButton.addEventListener("click", clearDB);
 
 async function getLocation() {
     // Get user's location
-    let location = null;
+    let latitude = null;
+    let longitude = null;
     const successHandler = (position) => {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+      latitude = position.coords.latitude;
+      longitude = position.coords.longitude;
     };
-    const errorHandler = (error) => {
-      console.log(error);
+    const errorHandler = (_) => {
+      // Amherst is default location
+      latitude = -72.5199;
+      longitude = 42.3732;
     };
     navigator.geolocation.getCurrentPosition(successHandler, errorHandler);
     url = "http://api.geonames.org/countryCodeJSON?lat=" + latitude + "&lng=" + longitude + "&username=bionic";
-    location = await fetch(url);
+    
+    const response = await fetch(url);
+    if (response.ok) {
+      const json = response.json();
+      return json.countryCode;
+    }
+    else {
+      return "US";
+    }
+}
+
+async function getLocationData(alpha2) {
+  const csv = await d3.csv(`data/CountryInfo.csv`)
+  const row = csv.filter(row => row.alpha2 === alpha2);
+  const temp = row.map(row => parseFloat(row.avgtemp));
+  return (9 / 5 * temp) + 32;
 }
 
 async function loadFromDB(name) {
