@@ -163,6 +163,21 @@ simButton.addEventListener('click', createSimulationChart);
 const clearButton = document.getElementById("clearBtn");
 clearButton.addEventListener("click", clearDB);
 
+async function getLocation() {
+    // Get user's location
+    let location = null;
+    const successHandler = (position) => {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+    };
+    const errorHandler = (error) => {
+      console.log(error);
+    };
+    navigator.geolocation.getCurrentPosition(successHandler, errorHandler);
+    url = "http://api.geonames.org/countryCodeJSON?lat=" + latitude + "&lng=" + longitude + "&username=bionic";
+    location = await fetch(url);
+}
+
 async function loadFromDB(name) {
   const resp = await fetch(URL + `/getData?name=${name}`);
   const data = await resp.json();
