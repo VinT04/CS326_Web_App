@@ -193,7 +193,7 @@ async function getLocation() {
 }
 
 async function getLocationData(alpha2) {
-  const csv = await d3.csv(`data/CountryInfo.csv`)
+  const csv = await d3.csv(`data/CountryInfo.csv`);
   const row = csv.filter(row => row.alpha2 === alpha2);
   const temp = row.map(row => parseFloat(row.avgtemp));
   return (9 / 5 * temp) + 32;
