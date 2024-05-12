@@ -296,9 +296,6 @@ function initColorBtns() {
   }
 }
 
-// // stores all data, with keys being numberic IDs corresponding to each data file (see dataNameKey)
-// const data = {};
-
 // stores the domain (min, max) for each data file
 const domainKey = {};
 
@@ -327,7 +324,7 @@ async function initData() {
     },
     {
       filename:"Climate-related_Disasters_Frequency", source: "The Emergency Events Database (EM-DAT)", units: "disasters",
-      title: "Frequency of Climate-related Disasters", label: "Climate-related Disasters"},
+      title: "Frequency of Climate-related Disasters", label: "Climate Disasters"},
   ];
   let population_data = await d3.csv(`data/population.csv`);
   const object_index = {};
@@ -641,12 +638,6 @@ const colorBtns = document.getElementsByClassName("color-radio");
 const colorKey = {red:"#ed3413", green:"#03ad36", blue:"#1a9cd9", purple:"#9803a6"};
 const scaleKey = {red: d3.interpolateYlOrRd, green: d3.interpolateBuGn, blue: d3.interpolateRdBu, purple: d3.interpolateMagma};
 let currCountry = "";
-// const dataKey = {
-//   1: {title: "Title for Data 1", units: "°F", label: "Data 1"},
-//   2: {title: "Title for Data 2", units: "°C", label: "Data 2"},
-//   3: {title: "Title for Data 3", units: "ppm", label: "Data 3"},
-//   4: {title: "Title for Data 4", units: "in", label: "Data 4"}
-// };
 
 // load and process data
 let data = await initData();
