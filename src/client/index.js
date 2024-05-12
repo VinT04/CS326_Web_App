@@ -288,6 +288,7 @@ function initColorBtns() {
         // update the color scale with the clicked button's color
         currentColor = btnElement.getAttribute("data-color")
         updateColorScale();
+        makeLegend(colorScale);
       }
       // update map to display color change
       updateMap();
@@ -390,16 +391,6 @@ async function initData() {
 }
 
 /**
- * Loads processed data from JSON file. Data was first processed with initData(),
- * then stored as a JSON file to skip data processing for future. Data object loaded in stores an array
- * of data objects, each containing values per country measuring a particular metric/type of data.
- * Also updates the dataNameKey.
- */
-async function loadMapData() {
-
-}
-
-/**
  * Initializes map slider in side panel that controls the year displayed.
  * Also sets up animation button next to the slider that automatically 
  * moves through the entire range of years.
@@ -469,6 +460,27 @@ function initMap() {
 
   svg.call(zoom);
   return [path, g];
+}
+
+/**
+ * Creates the legend for the map using the d3-legend module and the selected color scale. 
+ */
+function makeLegend(colorScale) {
+  const legend = d3.legendColor()
+    .shapeWidth(42)
+    .cells(6)
+    .orient("horizontal")
+    .scale(colorScale);
+  document.getElementById("color-legend").children[0].remove();
+  const svg = d3.select("#color-legend").append("svg");
+  svg.append("g")
+    .attr("class", "legendSequential")
+    .attr("overflow", "hidden")
+    .attr("color", "white")
+    .call(legend);
+  for (const elem of document.getElementsByClassName("label")) {
+    elem.style.fill = "white";
+  }
 }
 
 /**
@@ -607,6 +619,7 @@ function initDropdown() {
       sliderYear = slider.value;
       year.innerText = slider.value;
       updateMap();
+      makeLegend(colorScale);
     });
   });
 }
@@ -649,6 +662,8 @@ const [path, g] = initMap();
 
 // defining the current color scale
 let colorScale = currColorScale();
+
+makeLegend(colorScale);
 
 // adding slider behavior for updating the map and text
 let sliderYear = slider.value;

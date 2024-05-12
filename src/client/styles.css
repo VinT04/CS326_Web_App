@@ -392,7 +392,7 @@ g {
   padding: 20px;
   position: relative;
   display: grid;
-  grid-template-rows: 20% 40% 35%;
+  grid-template-rows: 20% 35% 30% 10%;
   row-gap: 0%;
 }
 
@@ -461,13 +461,13 @@ g {
 }
 
 #year-slider::-webkit-slider-thumb {
-appearance: none;
-width: 10px;
-height: 30px;
-border: 2px white solid;
-border-radius: 10px;
-background: #1d3557; 
-cursor: pointer;
+  appearance: none;
+  width: 10px;
+  height: 30px;
+  border: 2px white solid;
+  border-radius: 10px;
+  background: #1d3557; 
+  cursor: pointer;
 }
 
 #year-slider:hover {
@@ -488,7 +488,7 @@ cursor: pointer;
 
 #data-select {
   display: grid;
-  grid-template-columns: 15% 80%;
+  grid-template-columns: 15% 70%;
   column-gap: 5%;
   margin: 0;
   height: 40px;
@@ -626,4 +626,17 @@ cursor: pointer;
 .color-radio.selected {
   border-width: 2px;
   opacity: 0.8;
+}
+
+/**** color legend ****/
+
+#color-legend svg {
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+  color: #edf2f4;
+}
+
+#color-legend {
+  overflow: hidden;
 }
