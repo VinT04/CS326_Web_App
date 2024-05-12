@@ -1,5 +1,3 @@
-// import { response } from "express";
-
 const URL = "http://localhost:3260";
 
 async function sectionDisplay(name) {
@@ -315,20 +313,20 @@ const dataNameKey = {};
 async function initData() {
   const data_files = [
     {
-      filename: "avg_temp_change", source: "Food and Agriculture Organization Corporate Statistical Database", 
-      units: "°C", title: "Average Temperature Change since 1951-1980", label: "Temperature Change"
+      filename: "avg_temp_change", source: "FAOSTAT", 
+      units: "°C", title: "Average Temp. Change since 1951-1980", label: "Temperature Change"
     },
     {
       filename:"ghg-emissions", source: "Climate Watch",
       units: "MtCO2e per person", title: "Carbon Dioxide Emissions Per Capita", label: "CO2 Emissions"
     },
     {
-      filename:"Forest_and_Carbon", source: "Food and Agriculture Organization of the United Nations (FAO)",
+      filename:"Forest_and_Carbon", source: "FAO",
       units: "%", title: "Forest Cover Index (relative to 1992)", label: "Forest Cover"
     },
     {
       filename:"Climate-related_Disasters_Frequency", source: "The Emergency Events Database (EM-DAT)", units: "disasters",
-      title: "Frequency of Climate-related Disasters (Wildfires, Droughts, Floods, etc.)", label: "Climate-related Disasters"},
+      title: "Frequency of Climate-related Disasters", label: "Climate-related Disasters"},
   ];
   let population_data = await d3.csv(`data/population.csv`);
   const object_index = {};
@@ -377,9 +375,6 @@ async function initData() {
         }
         minYear = Math.min(minYear, keyVal[0]);
         maxYear = Math.max(maxYear, keyVal[0]);
-        if (+keyVal[1] === 0) {
-          console.log(keyVal);
-        }
         return [Math.min(domain[0], +keyVal[1]), Math.max(domain[1], +keyVal[1])];
       }, [acc[0], acc[1]]);
       return [currMin, currMax, acc[2]];
@@ -392,30 +387,6 @@ async function initData() {
     parsedData["label"] = fileInfo.label;
     return parsedData;
   }))
-
-  // // iterate through all data CSVs
-  // while (i <= 4) {
-  //   data[i] = await d3.csv(`data/mock_data${i}.csv`)
-  //     .then(rawData => {
-  //       // obtain min and max values in the data, as well as a parsed version of the data
-  //       // that maps country ISO3 to the desired data values
-  //       const [min, max, parsedData] = rawData.reduce((acc, elem) => {
-  //         acc[2][elem["ISO3"]] = elem;
-  //         const [currMin, currMax] = Object.entries(elem).reduce((domain, keyVal) => {
-  //           // only want to look at values which have a year as a key
-  //           if (isNaN(keyVal[0])) {
-  //             return domain;
-  //           }
-  //           return [Math.min(domain[0], +keyVal[1]), Math.max(domain[1], +keyVal[1])];
-  //         }, [Infinity, -Infinity]);
-  //         return [currMin, currMax, acc[2]];
-  //       }, [Infinity, -Infinity, {}]);
-  //       domainKey[i] = {min: Math.floor(min), max: Math.ceil(max)};
-  //       return parsedData;
-  //     });
-  //   i++;
-  // }
-  // console.log(data);
 }
 
 /**
@@ -568,7 +539,6 @@ function mouseLeave() {
  * @returns A d3 color scale object corresponding to the current color scheme.
  */
 function currColorScale() {
-  // console.log(data[currentData]["domain"])
   return d3.scaleSequential()
       .domain([data[currentData]["domain"]["min"], data[currentData]["domain"]["max"]])
       .interpolator(scaleKey[currentColor]);
@@ -628,6 +598,7 @@ function initDropdown() {
       });
       option.classList.toggle("active");
       currentData = option.getAttribute("data-id");
+      source.innerText = data[currentData].source;
       dataName.innerText = `${data[currentData].label}:`;
       title.innerText = data[currentData].title;
       slider.min = data[currentData].yearRange.min;
@@ -649,6 +620,7 @@ const slider = document.getElementById("year-slider");
 const animateBtn = document.getElementById("animate");
 const year = document.getElementById("year");
 const dataName = document.getElementById("data-name");
+const source = document.getElementById("data-source");
 const title = document.getElementById("data-title");
 const colorBtns = document.getElementsByClassName("color-radio");
 
@@ -664,8 +636,7 @@ let currCountry = "";
 // };
 
 // load and process data
-const data = await initData();
-console.log(data);
+let data = await initData();
 
 // initialize side panel features
 initColorBtns();

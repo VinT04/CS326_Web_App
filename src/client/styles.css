@@ -392,7 +392,7 @@ g {
   padding: 20px;
   position: relative;
   display: grid;
-  grid-template-rows: 25% 35% 35%;
+  grid-template-rows: 20% 40% 35%;
   row-gap: 0%;
 }
 
@@ -407,7 +407,8 @@ g {
 #info {
   display: grid;
   grid-template-columns: 30fr 70fr;
-  grid-template-rows: 30px 50px 30px;
+  grid-template-rows: 25px 50px 50px 30px;
+  /* grid-template-rows: 25% 40% 25% 10%; */
   column-gap: 10px;
   row-gap: 10px;
 }
