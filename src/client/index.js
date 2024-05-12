@@ -99,6 +99,7 @@ const transportationRangeVal = document.getElementById("transportationRangeValue
 const agricultureRangeVal = document.getElementById("agricultureRangeValue");
 const industryRangeVal = document.getElementById("industryRangeValue");
 const otherRangeVal = document.getElementById("otherRangeValue");
+const simulationTitle = document.getElementById("simulationTitle");
 
 /**
  * Generates the simulation chart based on the values of the sliders. It takes the values in each of the sliders and uses them to apply a formula to the initial data.
@@ -114,7 +115,7 @@ function createSimulationChart() {
 
     // Apply a formula to the initial data using the slider values
     const countryCode = getLocation();
-    const data = getLocationData(countryCode);
+    // const data = getLocationData(countryCode);
     
     const initialData = [data, data + 0.5, data + 1, data + 1.5, data + 2, data + 2.5, data + 3, data + 3.5, data + 4, data + 4.5, data + 5, data + 5.5, data + 6, data + 6.5, data + 7, data + 7.5];
     const xValues = [2025, 2030, 2035, 2040, 2045, 2050, 2055, 2060, 2065, 2070, 2075, 2080, 2085, 2090, 2095, 2100];
@@ -170,33 +171,39 @@ async function getLocation() {
     // Get user's location
     let latitude = null;
     let longitude = null;
-    const successHandler = (position) => {
-      latitude = position.coords.latitude;
-      longitude = position.coords.longitude;
+    const successHandler = async (position) => {
+      latitude = await position.coords.latitude;
+      longitude = await position.coords.longitude;
+      await getURL();
     };
-    const errorHandler = (_) => {
+    const errorHandler = async (_) => {
       // Amherst is default location
       latitude = -72.5199;
       longitude = 42.3732;
+      await getURL();
     };
     navigator.geolocation.getCurrentPosition(successHandler, errorHandler);
-    const url = "http://api.geonames.org/countryCodeJSON?lat=" + latitude + "&lng=" + longitude + "&username=bionic";
     
-    const response = await fetch(url);
-    if (response.ok) {
-      const json = response.json();
-      return json.countryCode;
-    }
-    else {
-      return "US";
+    async function getURL() {
+      const url = "http://api.geonames.org/countryCodeJSON?lat=" + latitude + "&lng=" + longitude + "&username=bionic";
+      const response = await fetch(url);
+      if (response.ok) {
+        const json = await response.json();
+        simulationTitle.innerHTML = "Average Temperature Simulation for " + json.countryName;
+        await getLocationData(countryCode);
+      }
+      else {
+        simulationTitle.innerHTML = "Average Temperature Simulation for the US";
+        getLocationData("US");
+      }
     }
 }
 
 async function getLocationData(alpha2) {
   const csv = await d3.csv(`data/CountryInfo.csv`);
   const row = csv.filter(row => row.alpha2 === alpha2);
-  const temp = row.map(row => parseFloat(row.avgtemp));
-  return (9 / 5 * temp) + 32;
+  // const temp = row.map(row => parseFloat(row.avgtemp));
+  return (9 / 5 * parseFloat(row.avgtemp)) + 32;
 }
 
 async function loadFromDB(name) {
