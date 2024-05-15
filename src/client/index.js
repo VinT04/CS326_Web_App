@@ -106,14 +106,7 @@ const simulationTitle = document.getElementById("simulationTitle");
  * The chart then displays the original data and the projected data side by side, to allow the user to the consequences of their choices.
  */
 async function createSimulationChart() {
-    // Get the values of the 5 slides
-
-    // Apply a formula to the initial data using the slider values
     await getLocation();
-    // console.log(data);
-    // const data = getLocationData(countryCode);
-    
-
 }
 const simButton = document.getElementById("simulateButton");
 simButton.addEventListener('click', createSimulationChart);
@@ -159,56 +152,58 @@ async function getLocationData(alpha2) {
   const industryChange = parseFloat(industryRangeVal.innerText);
   const otherChange = parseFloat(otherRangeVal.innerText);
 
-  const csv = await d3.csv(`data/CountryInfo.csv`);
-  const row = csv.filter(row => row.alpha2 === alpha2);
-  const temp = row.map(row => parseFloat(row.avgtemp));
-  const x = 13.75;
-  data = (9 / 5 * parseFloat(x)) + 32;
+  function grapher(data) {
+    const initialData = [data, data + 0.5, data + 1, data + 1.5, data + 2, data + 2.5, data + 3, data + 3.5, data + 4, data + 4.5, data + 5, data + 5.5, data + 6, data + 6.5, data + 7, data + 7.5];
+    const xValues = [2025, 2030, 2035, 2040, 2045, 2050, 2055, 2060, 2065, 2070, 2075, 2080, 2085, 2090, 2095, 2100];
+    const yValues = initialData.map(x => x + 0.05 * electricityChange + 0.03 * transportationChange + 0.05 * agricultureChange + 0.04 * industryChange + 0.03 * otherChange);
+    const projColor = yValues[0] > initialData[0] ? "red" : "green"; // The projected data will be red if temperature is higher, and green otherwise
+    
+    new Chart('predictionChart', {
+        type: 'bar',
+        data: {
+            labels: xValues,
+            datasets: [{
+                label: 'Current Temperature',
+                backgroundColor: "yellow",
+                data: initialData,
+                stack: 'Stack 0'
+            }, 
+            {
+                label: 'Projected Temperature',
+                backgroundColor: projColor,
+                data: yValues,
+                stack: 'Stack 1'
+            }]
+        },       
+        options: {
+            scales: {
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Year'
+                    }
+                }],
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Temperature (°F)'
+                    },
+                    ticks: {
+                        min: 20, 
+                        max:80, 
+                        stepSize: 5
+                    }
+                }],
+            },
+        }
+    });
+  }
 
-  const initialData = [data, data + 0.5, data + 1, data + 1.5, data + 2, data + 2.5, data + 3, data + 3.5, data + 4, data + 4.5, data + 5, data + 5.5, data + 6, data + 6.5, data + 7, data + 7.5];
-  const xValues = [2025, 2030, 2035, 2040, 2045, 2050, 2055, 2060, 2065, 2070, 2075, 2080, 2085, 2090, 2095, 2100];
-  const yValues = initialData.map(x => x + 0.05 * electricityChange + 0.03 * transportationChange + 0.05 * agricultureChange + 0.04 * industryChange + 0.03 * otherChange);
-  const projColor = yValues[0] > initialData[0] ? "red" : "green"; // The projected data will be red if temperature is higher, and green otherwise
-  
-  new Chart('predictionChart', {
-      type: 'bar',
-      data: {
-          labels: xValues,
-          datasets: [{
-              label: 'Current Temperature',
-              backgroundColor: "yellow",
-              data: initialData,
-              stack: 'Stack 0'
-          }, 
-          {
-              label: 'Projected Temperature',
-              backgroundColor: projColor,
-              data: yValues,
-              stack: 'Stack 1'
-          }]
-      },       
-      options: {
-          scales: {
-              xAxes: [{
-                  scaleLabel: {
-                      display: true,
-                      labelString: 'Year'
-                  }
-              }],
-              yAxes: [{
-                  scaleLabel: {
-                      display: true,
-                      labelString: 'Temperature (°F)'
-                  },
-                  ticks: {
-                      min: 20, 
-                      max:80, 
-                      stepSize: 5
-                  }
-              }],
-          },
-      }
-  });
+  const csv = await d3.csv(`data/CountryInfo.csv`);
+  const row = csv.filter(row => row.alpha2code === alpha2);
+  const temp = row.map(row => parseFloat(row.avgtemp));
+  data = (9 / 5 * parseFloat(temp)) + 32;
+  grapher(data)
 }
 
 async function loadFromDB(name) {
